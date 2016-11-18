@@ -1,53 +1,64 @@
 'use strict';
 
-var todosList = [
-	{
-		done: false,
-		task: 'Do the washing'
-	},
-	{
-		done: true,
-		task: 'Do the ironing'
-	},
-	{
-		done: false,
-		task: 'eat'
+
+var TodoList = function($container) {
+
+	var todos = [];
+
+	// TODO functions
+
+	function addTodo(todoItem) {
+		todos.push(todoItem);
+
+		return todos;
 	}
-];
 
-function addTodo(todos, todoItem) {
-	todos.push(todoItem);
+	function todoDone(id, state) {
+		todos[id].done = state;
+		return todos;
+	}
 
-	return todos;
-}
+	function removeTodo(id) {
+		var cool = todos.indexOf(id);
+		todos.splice(id, 1);
 
-function todoDone(todos, todoItem, state) {
-	todos.push(todoItem);
-	return todos;
-}
+		return todos;
+	}
 
-// function removeTodo(todos, attr, value) {
-// 	var i = todos.length;
-// 	while(i--){
-// 		if( todos[i] 
-// 			&& todos[i].hasOwnProperty(attr) 
-// 			&& (arguments.length > 2 && todos[i][attr] === value ) ){ 
+	function saveData() {
+		// save cookie with data
+		var todoJson = JSON.stringify(todos);
+	}
 
-// 			todos.splice(i,1);
+	// HTML functions
+	// 1. Grab all the elements
+	// 2. Render function
 
-// 			}
-// 	}
-// 	return todos;
-// }
+	function render() {
+
+	}
+
+	// 3. Listen for changes
+	// 3a. On every change:
+	//    * First update the model (todos array)
+	//    * Then render
+
+
+	return {
+		addTodo: addTodo,
+		todoDone: todoDone,
+		removeTodo: removeTodo,
+		list: todos
+	}
+
+};
+
+var todos = new TodoList();
 
 
 
-function removeTodo(todos, id) {
+/* Resources*//*
 
-	var cool = todos.indexOf(id);
-	var i = todos.length;
-	console.log(i);
-	todos.splice(id);
+http://stackoverflow.com/questions/16491758/remove-objects-from-array-by-object-property
 
-	return todos;
-}
+*/
