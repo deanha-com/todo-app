@@ -1,0 +1,101 @@
+/**
+RULE 1: Selectors in order of specifity. Any selector should trump everything before it. Generic > Specific
+RULE 2: Only one pixel value on the sheet, everything else should be em or rem.
+RULE 3: Never more than 3 nested selected
+**/
+
+/** CONTAINER STYLES **/
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+	font-size: 10px;
+	font-family: "century gothic";
+	background-image: url('bg.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100%;
+	overflow: hidden;
+}
+
+hr {
+    border: 0;
+    margin: 1em;
+    height: 0.1em;
+    background: none;
+    background-image: linear-gradient(to right, #333, #ccc, #333);
+}
+
+
+/** TASK LIST STYLES */
+
+.todo {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  background: #2b2b2b;
+  opacity: 0.85;
+  color: white;
+  padding: 2em;
+  font-size: 1.4em;
+  transform: translate(-50%, -50%);
+  width: 40em;
+  max-width: 100%;
+}
+
+.todo_title {
+	font-size: 3em;
+}
+
+.todo_desc {
+	font-size: 1.4em;
+}
+
+.todo_input {
+	width: 79%;
+	border: none;
+	padding: 0.5em;
+}
+
+.todo_add-item {
+	width: 20%;
+	border: none;
+	padding: 0.5em;
+}
+
+.todo_list {
+	list-style: none;
+	padding-left: 1.5em;
+}
+
+
+.todo_item {
+	line-height: 2;
+}
+
+.todo_item-delete {
+	float: right;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+	visibility: hidden;
+}
+
+.todo_item-delete::after {
+	content: "\2297";
+	visibility: visible;
+}
+/*  */
+.done {
+	text-decoration: line-through;
+}
+
+:checked + .todo_task {
+	text-decoration: line-through;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TODO</title>
+	<link rel="stylesheet" href="style.css">
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="script.js"></script> -->
+</head>
+
+<body>
+	<div class="widget">
+		<article class="todo">
+			<h1 class="todo_title">TO-DO DAILY</h1>
+
+			<label for="todoInput" class="todo_desc">What do you want to do today?</label><hr/>
+			<input class="todo_input" id="todoInput" type="text" name="todoInput" placeholder="Enter a task">
+			<input class="todo_add-item" type="button" value="Add" name="add">
+
+			<ul class="todo_list">
+				<li class="todo_item">
+					<div>
+						<label>
+							<input type="checkbox" checked="">
+							<span class="todo_task">Wakeup in the morning</span>
+						</label>
+						<button class="todo_item-delete">Delete</button>
+					</div>
+				</li>
+
+				<li class="todo_item">
+					<div>
+						<label>
+							<input type="checkbox" checked="">
+							<span class="todo_task">Brush your teeth</span>
+						</label>
+						<button class="todo_item-delete">Delete</button>
+					</div>
+				</li>
+				
+				<li class="todo_item">
+					<div>
+						<label>
+							<input type="checkbox">
+							<span class="todo_task editing">Eat breakfast</span>
+						</label>
+						<button class="todo_item-delete">Delete</button>
+					</div>
+				</li>
+
+				<li class="todo_item">
+					<div>
+						<label>
+							<input type="checkbox">
+							<span class="todo_task">Work work work and repeat</span>
+						</label>
+						<button class="todo_item-delete">Delete</button>
+					</div>
+				</li>
+			</ul>
+
+			<p class="todo_count" >4 task to do</p>
+
+		</article>
+	</div>
+</body>
+</html>
