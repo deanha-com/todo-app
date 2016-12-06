@@ -2,32 +2,43 @@
 
 var TodoList = function($container) {
 
-	var todos = [{id: 0, label: 'gotta eat', done: false},
-							{id: 1, label: 'gotta play.. MADNESS', done: false},
-							{id: 2, label: 'True my true', done: true}, {id: 3, label: 'Yoyo', done: true}];
-	// loadData();
+	var todos = [];
+
+	var uniqID = 0;
+	loadData();
+
+
 
 	// TODO functions
 
 	function addTodo(todoItem, done) {
-		var object = {label: todoItem, done : done}; 
-
+		var object = {uid: ++uniqID, label: todoItem, done: done}; 
 		todos.push(object);
 
 		return todos;
 	}
 
 	//This changes the state of the chosen task
-	function todoDone(id, state) {
-		todos[id].done = state;
+	function todoDone(uid, state) {
+		todos.uid[uid].done = state;
+		// todos.findTask(uid).done = state;
 		return todos;
 	}
 
-	function removeTodo(id) {
-		var cool = todos.indexOf(id);
-		todos.splice(id, 1);
 
-		return todos;
+function findTask(uid) {
+	var findTask = [];
+		findTask = todos.filter(function (todo) {
+			return todo.uid === uid;
+		});
+		console.log(findTask);
+}
+
+	function removeTodo(uid) {
+
+		todos.splice(findTask(uid), 1);
+		console.log(findTask);
+
 	}
 
 	function filterTodos() {
@@ -40,15 +51,15 @@ var TodoList = function($container) {
 		// }
 		
 		filteredList = todos.filter(function (todo) {
-			return todo.done;
+			return todo.done === false;
 		});
 
 		console.log(filteredList);
 	}
 
-	// function loadData() {
-	// 	todos = JSON.parse(localStorage.myTodo);
-	// }
+	function loadData() {
+		todos = JSON.parse(localStorage.myTodo);
+	}
 
 	function saveData() {
 		// save cookie with data
@@ -85,7 +96,8 @@ var TodoList = function($container) {
 		saveData: saveData,
 		todolist: todos,
 		render: render,
-		filterTodos: filterTodos
+		filterTodos: filterTodos,
+		findTask: findTask
 	}
 
 };
