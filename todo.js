@@ -1,16 +1,88 @@
 'use strict';
 
+var Todo = function(uid, label, done, template) {
+	var label = label;
+	var uid = uid;
+	var done = done;
+	var template = template;
+
+	var $element;
+	var $label;
+	var $deleteButton;
+
+	create();
+
+	function create() {
+		$element = document.createElement('li');
+	}
+
+	function render() {
+		var $templateElement = document.createElement('template');
+
+		$templateElement.innerHTML = template
+			.trim()
+			.replace('{{label}}', label)
+			.replace('{{uid}}', uid)
+			.replace('{{done}}', done ? 'checked' : '');
+
+		$element = $templateElement.content.firstChild;
+		$deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
+		$label = $element.getElementsByTagName('label')[0];
+
+		addListeners();
+
+		return $element;
+	}
+
+	function addListeners() {
+		$label.addEventListener('click', onLabelClicked);
+		$deleteButton.addEventListener('click', onDeleteClicked);
+	}
+
+	function onLabelClicked(evt) {
+
+	}
+
+	function onDeleteClicked(evt) {
+
+	}
+
+	return {
+		label: label,
+		uid: uid,
+		done: done,
+		render: render
+	}
+}
+
+
+/* ------------------------------------------------------------------------------------ */
+
+
+
 var TodoList = function($container) {
 
 	var todos = [];
-	loadData();
+	var myTask = todos.todolist;
+	// loadData();
 	var uniqID = todos.length; // Set unique task ID counter to existing todo length.
+
+	var todoTemplate = document.getElementById('todo-item-template').innerHTML;
 
 	// Add a task and set the status
 	function addTask(todoItem, done) {
-		done = (typeof done !== 'undefined') ?  done : false; // Add task and make it false as default if 2nd param not used.
-		var object = {uid: ++uniqID, label: todoItem, done: done}; // Create a new opject and format it.
+		// Add task and make it false as default if 2nd param not used.
+		done = (typeof done !== 'undefined') ?  done : false; 
+
+		var object = new Todo(++uniqID, todoItem, done, todoTemplate);
+
+		//var object = {uid: ++uniqID, label: todoItem, done: done}; // Create a new opject and format it.
 		todos.push(object); //push it into the original array of todolist.
+		// adding();
+		saveData();
+
+		// loadData();
+		// renderTask();
 
 		return todos;
 	}
@@ -19,6 +91,7 @@ var TodoList = function($container) {
 	//Find a task by its Unique ID and not the array index ID.
 	function findTask(uid) {
 		var findTask = [];
+		console.log(todos);
 		findTask = todos.filter(function (todo) { // Go through the array
 			return todo.uid === uid;								// and filter it to match uid params
 		});
@@ -80,7 +153,6 @@ var TodoList = function($container) {
 		
 		var jjson = localStorage.getItem("myTodo");
 
-
 		if (jjson === undefined || jjson === null || jjson.length === 0) {
      todos = [];
      console.log('The array of task is empty');
@@ -89,8 +161,8 @@ var TodoList = function($container) {
 			todos = JSON.parse(jjson);
 			console.log('Loading from localStorage: ' + todos.length + ' task left to do!');
 		}
-		
-		return todos;
+
+		// return todos;
 	}
 
 
@@ -98,7 +170,7 @@ var TodoList = function($container) {
 	function saveData() {
 		var todoJson = JSON.stringify(todos);
 		localStorage.setItem("myTodo", todoJson);
-		return todos = todoJson;
+		return todoJson;
 	}
 
 
@@ -107,14 +179,51 @@ var TodoList = function($container) {
 	// 2. Render function
 
 	function render() {
-			todos = localStorage.myTodo;
+			
+		/*DEAN CURRENT*/
+		// var template = template;
+		// var $templateElement = document.createElement('template');
+
+		// $templateElement.innerHTML = template
+		// 	.trim()
+		// 	.replace('{{label}}', label)
+		// 	.replace('{{uid}}', uid)
+		// 	.replace('{{done}}', done ? 'checked' : '');
+
+		// $element = $templateElement.content.firstChild;
+		// $deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
+		// $label = $element.getElementsByTagName('label')[0];
+
+		// addListeners();
+
+		// return $element;
+
+
+		/*DEAN OLD*/
+		// var itm = document.querySelector(".todo_list_boiler li");
+		// var cln = itm.cloneNode(true);
+		// document.querySelector('.todo_list').appendChild(cln);
+		// document.querySelector('.todo_task').innerHTML = tt[i].label;
+		// console.log(cln);
+
+
+		/*TOMMER*/
+		var $todoElements = [];
+
+		todos.forEach(function(todo) {
+			var $todoElements = todo.render();
+			$container.appendChild($todoElements);
+		});
+
+		console.log($container);
+
+		$container.innerHTML = html;
 	}
 
 	// 3. Listen for changes
 	// 3a. On every change:
 	//    * First update the model (todos array)
 	//    * Then render
-
 
 	return {
 		addTask: addTask,
@@ -131,8 +240,6 @@ var TodoList = function($container) {
 	}
 
 };
-
-var todos = new TodoList();
 
 
 /* Resources *//*

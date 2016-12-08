@@ -5,7 +5,46 @@
 	<title>Todo App</title>
 </head>
 <body>
+	<div id="todo"></div>
+
+	<script type="text/template" id="todo-list-template">
+		<div class="widget">
+			<article class="todo">
+				<h1 class="todo_title">TO-DO DAILY</h1>
+				<form>
+				<label for="todoInput" class="todo_desc">What do you want to do today?</label><hr/>
+				<input class="todo_input" id="todoInput" type="text" name="todoInput" placeholder="Enter a task">
+				<input class="todo_add-item" type="submit" value="Add" name="add">
+				</form>
+				<ul class="todo_list_boiler" style="display: block;">
+					
+				</ul>
+				<ul class="todo_list">
+				</ul>
+
+				<p class="todo_count" >-</p>
+
+			</article>
+		</div>
+	</script>
+
+	<script type="text/template" id="todo-item-template">
+		<li class="todo_item" draggable="true" data-qid="{{uid}}">
+			<div>
+				<label>
+					<input type="checkbox" check="{{done}}">
+					<span class="todo_task">{{label}}</span>
+				</label>
+				<button class="todo_item-delete">Delete</button>
+			</div>
+		</li>
+	</script>
+
 	<script src="todo.js"></script>
+	<script>
+		var todos = new TodoList(document.getElementById('todo-list-template'));
+	</script>
+
 	<p style="font-family: sans-serif; font-size:18px; text-align: center; margin-top:45vh !important; color: white; background: #ff3e3e; padding: 5px; margin: 0 auto; max-width: 215px;">Open the console (F12) and test your code!</p>
 
 </body>

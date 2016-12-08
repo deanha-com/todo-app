@@ -13,7 +13,8 @@ RULE 3: Never more than 3 nested selected
 html, body {
 	font-size: 10px;
 	font-family: "century gothic";
-	background-image: url('bg.jpg');
+	/* background-image: url('bg.jpg'); */
+	background-color: #f7cbbd;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -35,13 +36,13 @@ hr {
 .todo {
   position: absolute;
   left: 50%;
-  top: 35%;
+  top: 5%;
   background: #2b2b2b;
   opacity: 0.85;
   color: white;
   padding: 2em;
   font-size: 1.4em;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   width: 40em;
   max-width: 100%;
 }
@@ -66,7 +67,7 @@ hr {
 	padding: 0.5em;
 }
 
-.todo_list {
+.todo_list, .todo_list_boiler {
 	list-style: none;
 	padding-left: 1.5em;
 }
