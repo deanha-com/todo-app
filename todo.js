@@ -1,5 +1,9 @@
 'use strict';
 
+/* --------------------------------------------------------------------------------- */
+/* THE MAIN FUNCTION THAT HANDLES EACH TASK - CREATE, EDIT, UPDATE AND DELETE.
+/* LISTEN TO CHANGES.
+/* --------------------------------------------------------------------------------- */
 var Todo = function(uid, label, done, template) {
 	var label = label;
 	var uid = uid;
@@ -10,10 +14,10 @@ var Todo = function(uid, label, done, template) {
 	var $label;
 	var $deleteButton;
 
-	create();
+	// create();
 
 	function create() {
-		$element = document.createElement('li');
+		// $element = document.createElement('li');
 	}
 
 	function render() {
@@ -28,9 +32,8 @@ var Todo = function(uid, label, done, template) {
 		$element = $templateElement.content.firstChild;
 		$deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
 		$label = $element.getElementsByTagName('label')[0];
-
+		
 		addListeners();
-
 		return $element;
 	}
 
@@ -40,11 +43,13 @@ var Todo = function(uid, label, done, template) {
 	}
 
 	function onLabelClicked(evt) {
-
+		console.log('Ive been clicked - LABEL')
+		console.log(this);
 	}
 
 	function onDeleteClicked(evt) {
-
+		console.log('Ive been clicked - DELETE BUTTON')
+		console.log(this);
 	}
 
 	return {
@@ -55,10 +60,10 @@ var Todo = function(uid, label, done, template) {
 	}
 }
 
-
-/* ------------------------------------------------------------------------------------ */
-
-
+/* --------------------------------------------------------------------------------- */
+/* BE AS BASIC AND DUMP AS POSSIBLE + DOES NOT CARE ABOUT STATE CHANGES
+/* HANDLES THE WHOLE LIST.
+/* --------------------------------------------------------------------------------- */
 
 var TodoList = function($container) {
 
@@ -179,45 +184,23 @@ var TodoList = function($container) {
 	// 2. Render function
 
 	function render() {
-			
-		/*DEAN CURRENT*/
-		// var template = template;
-		// var $templateElement = document.createElement('template');
-
-		// $templateElement.innerHTML = template
-		// 	.trim()
-		// 	.replace('{{label}}', label)
-		// 	.replace('{{uid}}', uid)
-		// 	.replace('{{done}}', done ? 'checked' : '');
-
-		// $element = $templateElement.content.firstChild;
-		// $deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
-		// $label = $element.getElementsByTagName('label')[0];
-
-		// addListeners();
-
-		// return $element;
-
-
-		/*DEAN OLD*/
 		// var itm = document.querySelector(".todo_list_boiler li");
 		// var cln = itm.cloneNode(true);
 		// document.querySelector('.todo_list').appendChild(cln);
 		// document.querySelector('.todo_task').innerHTML = tt[i].label;
 		// console.log(cln);
-
-
-		/*TOMMER*/
+		// var html = ;
 		var $todoElements = [];
 
 		todos.forEach(function(todo) {
-			var $todoElements = todo.render();
-			$container.appendChild($todoElements);
+			var $todoElement = todo.render();
+			$container.appendChild($todoElement);
 		});
 
 		console.log($container);
 
-		$container.innerHTML = html;
+		// $container.innerHTML = html;
+		// document.body = $container;
 	}
 
 	// 3. Listen for changes
