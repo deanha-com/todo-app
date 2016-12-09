@@ -1,3 +1,59 @@
+
+window.onload = function () {
+	var todos = new TodoList(document.getElementById('todo'));
+
+
+
+	todos.loadData();
+
+	document.getElementsByClassName("todo_count")[0].innerHTML = todos.todolist.length + ' task left to do';
+	// console.log (todos.todolist.length);
+
+	document.getElementById("todoInput").focus();
+	var taskText = document.querySelector('.todo_input').value;
+	document.querySelector('.todo_add-item').onclick=function(){
+
+		var taskText = document.querySelector('.todo_input').value;
+		if (taskText) {
+			todos.addTask(taskText);
+			console.log('added');
+
+
+		}
+		else {
+			console.log('nothing to add');
+		}
+	};
+
+
+
+	// todos.render();
+
+	// alert();
+
+	window.todos = todos;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	PREVIOUS METHOD WORKS BUT NOT GREAT.
+
+
 function adding() {
 	var node = document.createElement("li");
   var newDiv = document.createElement("div");
@@ -81,8 +137,8 @@ window.onload = function () {
 
 }
 
+*/
 
-//////////////////////
 
 // CLONE HIDDEN STRUCTURE - Works but adds the copy list item as well.. we dont want that.
 

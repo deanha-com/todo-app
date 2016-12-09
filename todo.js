@@ -4,21 +4,20 @@
 /* THE MAIN FUNCTION THAT HANDLES EACH TASK - CREATE, EDIT, UPDATE AND DELETE.
 /* LISTEN TO CHANGES.
 /* --------------------------------------------------------------------------------- */
-var Todo = function(uid, label, done, template) {
+var Todo = function(uid, label, done, template, onDelete) {
 	var label = label;
 	var uid = uid;
 	var done = done;
 	var template = template;
+	var onDelete = onDelete;
+	console.log(onDelete);
 
 	var $element;
 	var $label;
 	var $deleteButton;
+	var $addBtn = document.getElementsByClassName('todo_add-item')[0];
 
-	// create();
-
-	function create() {
-		// $element = document.createElement('li');
-	}
+	var self = this;
 
 	function render() {
 		var $templateElement = document.createElement('template');
@@ -32,7 +31,7 @@ var Todo = function(uid, label, done, template) {
 		$element = $templateElement.content.firstChild;
 		$deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
 		$label = $element.getElementsByTagName('label')[0];
-		
+
 		addListeners();
 		return $element;
 	}
@@ -40,23 +39,42 @@ var Todo = function(uid, label, done, template) {
 	function addListeners() {
 		$label.addEventListener('click', onLabelClicked);
 		$deleteButton.addEventListener('click', onDeleteClicked);
+		$addBtn.addEventListener('click', onSubmit);
 	}
 
 	function onLabelClicked(evt) {
-		console.log('Ive been clicked - LABEL')
-		console.log(this);
+		// console.log('Ive been clicked - LABEL')
+		// todos.markDone(this);
+		var $checkbox = $element.getElementsByTagName('input')[0];
+		
+		done = $checkbox.checked;
+		console.log(uid, done);
+		// console.log(done);
+		// render();
+	}
+
+	function onSubmit(evt) {
+		var taskValue = document.getElementById("todoInput").value;
+		// todos.addTask(taskValue);
+		console.log('submited new task')
+		// console.log(this);
+		// render();
 	}
 
 	function onDeleteClicked(evt) {
 		console.log('Ive been clicked - DELETE BUTTON')
 		console.log(this);
+
+		onDelete(uid);
 	}
 
 	return {
 		label: label,
 		uid: uid,
 		done: done,
-		render: render
+		render: render,
+		onDelete: onDelete,
+		getData: function() { return { done: done, uid: uid, label: label } }
 	}
 }
 
@@ -70,24 +88,33 @@ var TodoList = function($container) {
 	var todos = [];
 	var myTask = todos.todolist;
 	// loadData();
-	var uniqID = todos.length; // Set unique task ID counter to existing todo length.
+	var uniqID = 0; // Set unique task ID counter to existing todo length.
+
+	todos.forEach(function(todo) {
+		if(todo.uid > uniqID)
+			uniqID = todo.uid + 1;
+	});
 
 	var todoTemplate = document.getElementById('todo-item-template').innerHTML;
+
+	var self = this;
 
 	// Add a task and set the status
 	function addTask(todoItem, done) {
 		// Add task and make it false as default if 2nd param not used.
 		done = (typeof done !== 'undefined') ?  done : false; 
 
-		var object = new Todo(++uniqID, todoItem, done, todoTemplate);
+		// Create a new object and format using template.
+		var object = new Todo(++uniqID, todoItem, done, todoTemplate, removeTask);
 
-		//var object = {uid: ++uniqID, label: todoItem, done: done}; // Create a new opject and format it.
 		todos.push(object); //push it into the original array of todolist.
 		// adding();
 		saveData();
 
 		// loadData();
 		// renderTask();
+
+		render();
 
 		return todos;
 	}
@@ -97,19 +124,26 @@ var TodoList = function($container) {
 	function findTask(uid) {
 		var findTask = [];
 		console.log(todos);
-		findTask = todos.filter(function (todo) { // Go through the array
-			return todo.uid === uid;								// and filter it to match uid params
+		// Go through the array
+		findTask = todos.filter(function (todo) { 
+			// and filter it to match uid params
+			return todo.uid === uid;								
 		});
 
-		return findTask[0];												//return the object and select it, we will need to use this later.
+		//return the object and select it, we will need to use this later.
+		return findTask[0];												
 	}
 
 
 	//This changes the state of the chosen task
 	function markDone(uid, state) {
-		state = (typeof state !== 'undefined') ?  state : true; // default state is TRUE, if 2nd params used then you can set FALSE.
-		var todo = findTask(uid); // go and find out specific task using the uid.
-		todo.done = state;				// now that we have it selected in out findTask() we can now access the 'done' key and set the state. Default is TRUE.
+		// default state is TRUE, if 2nd params used then you can set FALSE.
+		state = (typeof state !== 'undefined') ?  state : true;
+		// go and find out specific task using the uid.
+		var todo = findTask(uid);
+		// now that we have it selected in out findTask() we can now access
+		// the 'done' key and set the state. Default is TRUE.
+		todo.done = state;				
 
 		return todo;
 	}
@@ -121,7 +155,12 @@ var TodoList = function($container) {
 			return todel.uid !== uid;
 		});
 
-		return todos = todelete;
+		todos = todelete;
+
+		saveData();
+		render();
+
+		return todos;
 	}
 
 
@@ -149,7 +188,13 @@ var TodoList = function($container) {
 		filteredList = todos.filter(function (todo) {
 			return todo.done === false;
 		});
-		console.log(filteredList);
+
+		return filteredList;
+		console.log(filteredList + '\n' + 'There is ' + filteredList.length + ' task left to do!');
+	}
+
+	function leftTodo() {
+		return filterTask().length;
 	}
 
 
@@ -163,9 +208,19 @@ var TodoList = function($container) {
      console.log('The array of task is empty');
 		}
 		else {
-			todos = JSON.parse(jjson);
+			var todosData = JSON.parse(jjson);
+
+			for(var i = 0; i < todosData.length; i++) {
+				var todo = todosData[i];
+
+				todos.push(new Todo(todo.uid, todo.label, todo.done, todoTemplate, removeTask));
+			}
+
+			console.log(todos);
 			console.log('Loading from localStorage: ' + todos.length + ' task left to do!');
 		}
+		console.log('running here');
+		render();
 
 		// return todos;
 	}
@@ -173,8 +228,11 @@ var TodoList = function($container) {
 
 	// save current todo list to local storage
 	function saveData() {
-		var todoJson = JSON.stringify(todos);
+		console.log(todos);
+		var todosData = todos.map(function(todo) { return todo.getData(); });
+		var todoJson = JSON.stringify(todosData);
 		localStorage.setItem("myTodo", todoJson);
+		console.log(todoJson);
 		return todoJson;
 	}
 
@@ -184,12 +242,7 @@ var TodoList = function($container) {
 	// 2. Render function
 
 	function render() {
-		// var itm = document.querySelector(".todo_list_boiler li");
-		// var cln = itm.cloneNode(true);
-		// document.querySelector('.todo_list').appendChild(cln);
-		// document.querySelector('.todo_task').innerHTML = tt[i].label;
-		// console.log(cln);
-		// var html = ;
+		$container.innerHTML = '';
 		var $todoElements = [];
 
 		todos.forEach(function(todo) {
@@ -198,9 +251,6 @@ var TodoList = function($container) {
 		});
 
 		console.log($container);
-
-		// $container.innerHTML = html;
-		// document.body = $container;
 	}
 
 	// 3. Listen for changes
@@ -219,10 +269,15 @@ var TodoList = function($container) {
 		markAllDone: markAllDone,
 		markAllTodo: markAllTodo,
 		findTask: findTask,
-		loadData: loadData
+		loadData: loadData,
+		leftTodo: leftTodo
 	}
 
 };
+
+var TodoContainer = function($container) {
+
+}
 
 
 /* Resources *//*
