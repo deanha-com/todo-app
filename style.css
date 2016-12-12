@@ -8,13 +8,16 @@ RULE 3: Never more than 3 nested selected
 
 * {
   box-sizing: border-box;
+	transition: all 0.3s linear;
 }
 
 html, body {
 	font-size: 10px;
 	font-family: "century gothic";
 	/* background-image: url('bg.jpg'); */
-	background-color: #2d2d2d;
+	
+	background-color: #00bcd4;
+	/* background-color: #2d2d2d; */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -56,12 +59,13 @@ hr {
 }
 
 .todo_input {
-	width: 79%;
+	width: 100%;
 	border: none;
 	padding: 0.5em;
 }
 
 .todo_add-item {
+	display: none;
 	width: 20%;
 	border: none;
 	padding: 0.5em;
@@ -92,11 +96,25 @@ hr {
 	content: "\2297";
 	visibility: visible;
 }
+
+.todo_item-delete:hover {
+transform: scale(1.2);
+}
+
+
+
 /*  */
 .done {
 	text-decoration: line-through;
 }
 
+
+.todo_task {
+
+} 
+
 :checked + .todo_task {
-	text-decoration: line-through;
+  opacity: 0.2;
+  font-style: italic;
+  text-decoration: line-through;
 }

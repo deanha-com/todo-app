@@ -2,8 +2,6 @@
 window.onload = function () {
 	var todos = new TodoList(document.getElementById('todo'));
 
-
-
 	todos.loadData();
 
 	document.getElementsByClassName("todo_count")[0].innerHTML = todos.todolist.length + ' task left to do';
@@ -26,11 +24,11 @@ window.onload = function () {
 	};
 
 
+	// var localBG = localStorage.getItem('ImgStorage');
+	// document.body.style.background = 'red';
+
 
 	// todos.render();
-
-	// alert();
-
 	window.todos = todos;
 }
 

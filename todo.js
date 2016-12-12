@@ -10,7 +10,6 @@ var Todo = function(uid, label, done, template, onDelete) {
 	var done = done;
 	var template = template;
 	var onDelete = onDelete;
-	console.log(onDelete);
 
 	var $element;
 	var $label;
@@ -63,7 +62,7 @@ var Todo = function(uid, label, done, template, onDelete) {
 
 	function onDeleteClicked(evt) {
 		console.log('Ive been clicked - DELETE BUTTON')
-		console.log(this);
+		// console.log(this);
 
 		onDelete(uid);
 	}
@@ -90,10 +89,10 @@ var TodoList = function($container) {
 	// loadData();
 	var uniqID = 0; // Set unique task ID counter to existing todo length.
 
-	todos.forEach(function(todo) {
-		if(todo.uid > uniqID)
-			uniqID = todo.uid + 1;
-	});
+	// todos.forEach(function(todo) {
+	// 	if(todo.uid > uniqID)
+	// 		uniqID = todo.uid + 1;
+	// });
 
 	var todoTemplate = document.getElementById('todo-item-template').innerHTML;
 
@@ -101,6 +100,14 @@ var TodoList = function($container) {
 
 	// Add a task and set the status
 	function addTask(todoItem, done) {
+
+
+		todos.forEach(function(todo) {
+		if(todo.uid > uniqID)
+			uniqID = todo.uid;
+		});
+
+		console.log(uniqID);
 		// Add task and make it false as default if 2nd param not used.
 		done = (typeof done !== 'undefined') ?  done : false; 
 
@@ -111,7 +118,7 @@ var TodoList = function($container) {
 		// adding();
 		saveData();
 
-		// loadData();
+
 		// renderTask();
 
 		render();
@@ -156,9 +163,10 @@ var TodoList = function($container) {
 		});
 
 		todos = todelete;
-
+		document.getElementsByClassName("todo_count")[0].innerHTML = leftTodo() + ' task left to do';
 		saveData();
 		render();
+
 
 		return todos;
 	}
@@ -190,13 +198,12 @@ var TodoList = function($container) {
 		});
 
 		return filteredList;
-		console.log(filteredList + '\n' + 'There is ' + filteredList.length + ' task left to do!');
+		// console.log(filteredList + '\n' + 'There is ' + leftTodo() + ' task left to do!');
 	}
 
 	function leftTodo() {
 		return filterTask().length;
 	}
-
 
 	// Load data from local storage
 	function loadData() {
@@ -215,11 +222,8 @@ var TodoList = function($container) {
 
 				todos.push(new Todo(todo.uid, todo.label, todo.done, todoTemplate, removeTask));
 			}
-
-			console.log(todos);
-			console.log('Loading from localStorage: ' + todos.length + ' task left to do!');
+			// console.log('Loading from localStorage: ' + leftTodo() + ' task left to do!');
 		}
-		console.log('running here');
 		render();
 
 		// return todos;
@@ -228,11 +232,11 @@ var TodoList = function($container) {
 
 	// save current todo list to local storage
 	function saveData() {
-		console.log(todos);
+		// console.log(todos);
 		var todosData = todos.map(function(todo) { return todo.getData(); });
 		var todoJson = JSON.stringify(todosData);
 		localStorage.setItem("myTodo", todoJson);
-		console.log(todoJson);
+		// console.log(todoJson);
 		return todoJson;
 	}
 
@@ -250,7 +254,9 @@ var TodoList = function($container) {
 			$container.appendChild($todoElement);
 		});
 
-		console.log($container);
+		console.log('Loading from localStorage: ' + leftTodo() + ' task left to do!');
+
+		// console.log($container);
 	}
 
 	// 3. Listen for changes
