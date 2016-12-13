@@ -5,76 +5,81 @@
 /* LISTEN TO CHANGES.
 /* --------------------------------------------------------------------------------- */
 var Todo = function(uid, label, done, template, onDelete) {
-	var label = label;
-	var uid = uid;
-	var done = done;
-	var template = template;
-	var onDelete = onDelete;
+    var label = label;
+    var uid = uid;
+    var done = done;
+    var template = template;
+    var onDelete = onDelete;
 
-	var $element;
-	var $label;
-	var $deleteButton;
-	var $addBtn = document.getElementsByClassName('todo_add-item')[0];
+    var $element;
+    var $label;
+    var $deleteButton;
+    var $addBtn = document.getElementsByClassName('todo_add-item')[0];
 
-	var self = this;
+    var self = this;
 
-	function render() {
-		var $templateElement = document.createElement('template');
+    function render() {
+        var $templateElement = document.createElement('template');
 
-		$templateElement.innerHTML = template
-			.trim()
-			.replace('{{label}}', label)
-			.replace('{{uid}}', uid)
-			.replace('{{done}}', done ? 'checked' : '');
+        $templateElement.innerHTML = template
+            .trim()
+            .replace('{{label}}', label)
+            .replace('{{uid}}', uid)
+            .replace('{{done}}', done ? 'checked' : '');
 
-		$element = $templateElement.content.firstChild;
-		$deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
-		$label = $element.getElementsByTagName('label')[0];
+        $element = $templateElement.content.firstChild;
+        $deleteButton = $element.getElementsByClassName('todo_item-delete')[0];
+        $label = $element.getElementsByTagName('label')[0];
 
-		addListeners();
-		return $element;
-	}
+        addListeners();
+        return $element;
+    }
 
-	function addListeners() {
-		$label.addEventListener('click', onLabelClicked);
-		$deleteButton.addEventListener('click', onDeleteClicked);
-		$addBtn.addEventListener('click', onSubmit);
-	}
+    function addListeners() {
+        $label.addEventListener('click', onLabelClicked);
+        $deleteButton.addEventListener('click', onDeleteClicked);
+        $addBtn.addEventListener('click', onSubmit);
+    }
 
-	function onLabelClicked(evt) {
-		// console.log('Ive been clicked - LABEL')
-		// todos.markDone(this);
-		var $checkbox = $element.getElementsByTagName('input')[0];
-		
-		done = $checkbox.checked;
-		console.log(uid, done);
-		// console.log(done);
-		// render();
-	}
+    function onLabelClicked(evt) {
+        // console.log('Ive been clicked - LABEL')
+        // todos.markDone(this);
+        var $checkbox = $element.getElementsByTagName('input')[0];
 
-	function onSubmit(evt) {
-		var taskValue = document.getElementById("todoInput").value;
-		// todos.addTask(taskValue);
-		console.log('submited new task')
-		// console.log(this);
-		// render();
-	}
+        done = $checkbox.checked;
+        console.log('uid: '+uid,', done?: ' + done);
+        todos.saveData();
+        todos.leftTodo();
+    }
 
-	function onDeleteClicked(evt) {
-		console.log('Ive been clicked - DELETE BUTTON')
-		// console.log(this);
+    function onSubmit(evt) {
+        var taskValue = document.getElementById("todoInput").value;
 
-		onDelete(uid);
-	}
+        // todos.addTask(taskValue);
+        console.log('submited new task')
+            // console.log(this);
+            // render();
+    }
 
-	return {
-		label: label,
-		uid: uid,
-		done: done,
-		render: render,
-		onDelete: onDelete,
-		getData: function() { return { done: done, uid: uid, label: label } }
-	}
+    function onDeleteClicked(evt) {
+        console.log('Delete icon clicked, task item removed');
+        onDelete(uid);
+    }
+
+    return {
+        label: label,
+        uid: uid,
+        done: done,
+        render: render,
+        onDelete: onDelete,
+        getData: function() {
+            return {
+                done: done,
+                uid: uid,
+                label: label
+            }
+        }
+    }
 }
 
 /* --------------------------------------------------------------------------------- */
@@ -84,226 +89,219 @@ var Todo = function(uid, label, done, template, onDelete) {
 
 var TodoList = function($container) {
 
-	var todos = [];
-	var myTask = todos.todolist;
-	// loadData();
-	var uniqID = 0; // Set unique task ID counter to existing todo length.
+    var todos = [];
+    var myTask = todos.todolist;
+    // loadData();
+    var uniqID = 0; // Set unique task ID counter to existing todo length.
 
-	// todos.forEach(function(todo) {
-	// 	if(todo.uid > uniqID)
-	// 		uniqID = todo.uid + 1;
-	// });
+    // todos.forEach(function(todo) {
+    // 	if(todo.uid > uniqID)
+    // 		uniqID = todo.uid + 1;
+    // });
 
-	var todoTemplate = document.getElementById('todo-item-template').innerHTML;
+    var todoTemplate = document.getElementById('todo-item-template').innerHTML;
 
-	var self = this;
+    var self = this;
 
-	// Add a task and set the status
-	function addTask(todoItem, done) {
-
-
-		todos.forEach(function(todo) {
-		if(todo.uid > uniqID)
-			uniqID = todo.uid;
-		});
-
-		console.log(uniqID);
-		// Add task and make it false as default if 2nd param not used.
-		done = (typeof done !== 'undefined') ?  done : false; 
-
-		// Create a new object and format using template.
-		var object = new Todo(++uniqID, todoItem, done, todoTemplate, removeTask);
-
-		todos.push(object); //push it into the original array of todolist.
-		// adding();
-		saveData();
+    // Add a task and set the status
+    function addTask(todoItem, done) {
 
 
-		// renderTask();
+        todos.forEach(function(todo) {
+            if (todo.uid > uniqID)
+                uniqID = todo.uid;
+        });
 
-		render();
+        console.log(uniqID);
+        // Add task and make it false as default if 2nd param not used.
+        done = (typeof done !== 'undefined') ? done : false;
 
-		return todos;
-	}
-	
+        // Create a new object and format using template.
+        var object = new Todo(++uniqID, todoItem, done, todoTemplate, removeTask);
 
-	//Find a task by its Unique ID and not the array index ID.
-	function findTask(uid) {
-		var findTask = [];
-		console.log(todos);
-		// Go through the array
-		findTask = todos.filter(function (todo) { 
-			// and filter it to match uid params
-			return todo.uid === uid;								
-		});
-
-		//return the object and select it, we will need to use this later.
-		return findTask[0];												
-	}
+        todos.push(object); //push it into the original array of todolist.
+        // adding();
+        saveData();
 
 
-	//This changes the state of the chosen task
-	function markDone(uid, state) {
-		// default state is TRUE, if 2nd params used then you can set FALSE.
-		state = (typeof state !== 'undefined') ?  state : true;
-		// go and find out specific task using the uid.
-		var todo = findTask(uid);
-		// now that we have it selected in out findTask() we can now access
-		// the 'done' key and set the state. Default is TRUE.
-		todo.done = state;				
+        // renderTask();
 
-		return todo;
-	}
+        render();
+
+        return todos;
+    }
 
 
-	function removeTask(uid) {
-		var todelete = [];
-		todelete = todos.filter(function (todel) {
-			return todel.uid !== uid;
-		});
+    //Find a task by its Unique ID and not the array index ID.
+    function findTask(uid) {
+        var findTask = [];
+        console.log(todos);
+        // Go through the array
+        findTask = todos.filter(function(todo) {
+            // and filter it to match uid params
+            return todo.uid === uid;
+        });
 
-		todos = todelete;
-		document.getElementsByClassName("todo_count")[0].innerHTML = leftTodo() + ' task left to do';
-		saveData();
-		render();
-
-
-		return todos;
-	}
-
-
-	// Mark all tasks as DONE
-	function markAllDone (){
-		for (var i=1; i < todos.length+1; i++) {
-			markDone(i, true);
-		}		
-		return todos;
-	}
+        //return the object and select it, we will need to use this later.
+        return findTask[0];
+    }
 
 
-	// Mark all task as pending to do
-	function markAllTodo (){
-		for (var i=1; i < todos.length+1; i++) {
-			markDone(i, false);
-		}
-		return todos;
-	}
+    //This changes the state of the chosen task
+    function markDone(uid, state) {
+        // default state is TRUE, if 2nd params used then you can set FALSE.
+        state = (typeof state !== 'undefined') ? state : true;
+        // go and find out specific task using the uid.
+        var todo = findTask(uid);
+        // now that we have it selected in out findTask() we can now access
+        // the 'done' key and set the state. Default is TRUE.
+        todo.done = state;
+
+        return todo;
+    }
 
 
-	// Filter the task and only show task that needs to be done 
-	function filterTask() {
-		var filteredList = [];
-		filteredList = todos.filter(function (todo) {
-			return todo.done === false;
-		});
+    function removeTask(uid) {
+        var todelete = [];
+        todelete = todos.filter(function(todel) {
+            return todel.uid !== uid;
+        });
 
-		return filteredList;
-		// console.log(filteredList + '\n' + 'There is ' + leftTodo() + ' task left to do!');
-	}
+        todos = todelete;
+        leftTodo();
+        saveData();
+        render();
 
-	function leftTodo() {
-		return filterTask().length;
-	}
-
-	// Load data from local storage
-	function loadData() {
-		
-		var jjson = localStorage.getItem("myTodo");
-
-		if (jjson === undefined || jjson === null || jjson.length === 0) {
-     todos = [];
-     console.log('The array of task is empty');
-		}
-		else {
-			var todosData = JSON.parse(jjson);
-
-			for(var i = 0; i < todosData.length; i++) {
-				var todo = todosData[i];
-
-				todos.push(new Todo(todo.uid, todo.label, todo.done, todoTemplate, removeTask));
-			}
-			// console.log('Loading from localStorage: ' + leftTodo() + ' task left to do!');
-		}
-		render();
-
-		// return todos;
-	}
+        return todos;
+    }
 
 
-	// save current todo list to local storage
-	function saveData() {
-		// console.log(todos);
-		var todosData = todos.map(function(todo) { return todo.getData(); });
-		var todoJson = JSON.stringify(todosData);
-		localStorage.setItem("myTodo", todoJson);
-		// console.log(todoJson);
-		return todoJson;
-	}
+    // Mark all tasks as DONE
+    function markAllDone() {
+        for (var i = 1; i < todos.length + 1; i++) {
+            markDone(i, true);
+        }
+        return todos;
+    }
 
 
-	// HTML functions
-	// 1. Grab all the elements
-	// 2. Render function
+    // Mark all task as pending to do
+    function markAllTodo() {
+        for (var i = 1; i < todos.length + 1; i++) {
+            markDone(i, false);
+        }
+        return todos;
+    }
 
-	function render() {
-		$container.innerHTML = '';
-		var $todoElements = [];
 
-		todos.forEach(function(todo) {
-			var $todoElement = todo.render();
-			$container.appendChild($todoElement);
-		});
+    // Filter the task and only show task that needs to be done 
+    function filterTask() {
+        var filteredList = [];
+        filteredList = todos.filter(function(todo) {
+            return todo.done === false;
+        });
 
-		console.log('Loading from localStorage: ' + leftTodo() + ' task left to do!');
+        return filteredList;
+    }
 
-		// console.log($container);
-	}
+    function leftTodo() {
+        var leftTodo = filterTask().length;
+        document.getElementsByClassName("todo_count")[0].innerHTML = leftTodo + ' task left to do';
+        return leftTodo;
+    }
 
-	// 3. Listen for changes
-	// 3a. On every change:
-	//    * First update the model (todos array)
-	//    * Then render
+    // Load data from local storage
+    function loadData() {
 
-	return {
-		addTask: addTask,
-		markDone: markDone,
-		removeTask: removeTask,
-		saveData: saveData,
-		todolist: todos,
-		render: render,
-		filterTask: filterTask,
-		markAllDone: markAllDone,
-		markAllTodo: markAllTodo,
-		findTask: findTask,
-		loadData: loadData,
-		leftTodo: leftTodo
-	}
+        var jjson = localStorage.getItem("myTodo");
+
+        if (jjson === undefined || jjson === null || jjson.length === 0) {
+            todos = [];
+            console.log('The array of task is empty');
+        } else {
+            var todosData = JSON.parse(jjson);
+
+            for (var i = 0; i < todosData.length; i++) {
+                var todo = todosData[i];
+
+                todos.push(new Todo(todo.uid, todo.label, todo.done, todoTemplate, removeTask));
+            }
+        }
+        render();
+
+        // return todos;
+    }
+
+
+    // save current todo list to local storage
+    function saveData() {
+        // console.log(todos);
+        var todosData = todos.map(function(todo) {
+            return todo.getData();
+        });
+        var todoJson = JSON.stringify(todosData);
+        localStorage.setItem("myTodo", todoJson);
+        // console.log(todoJson);
+        return todoJson;
+    }
+
+    function resetInput() {
+        document.getElementById("todoInput").value = "";
+        console.log('resetting..');
+        leftTodo();
+        
+    }
+
+    function checkInput(thisEvent) {
+        if (thisEvent.keyCode == 13) { // enter key
+            console.log('you pressed ENTER');
+            var taskValue = document.getElementById("todoInput").value;
+            addTask(taskValue);
+            resetInput();
+        }
+    }
+
+
+    // HTML functions
+    // 1. Grab all the elements
+    // 2. Render function
+
+    function render() {
+        $container.innerHTML = '';
+        var $todoElements = [];
+
+        todos.forEach(function(todo) {
+            var $todoElement = todo.render();
+            $container.appendChild($todoElement);
+        });
+
+        console.log('Loading from localStorage: ' + leftTodo() + ' task left to do!');
+
+        // console.log($container);
+    }
+
+    // 3. Listen for changes
+    // 3a. On every change:
+    //    * First update the model (todos array)
+    //    * Then render
+
+    return {
+        addTask: addTask,
+        markDone: markDone,
+        removeTask: removeTask,
+        saveData: saveData,
+        todolist: todos,
+        render: render,
+        filterTask: filterTask,
+        markAllDone: markAllDone,
+        markAllTodo: markAllTodo,
+        findTask: findTask,
+        loadData: loadData,
+        resetInput: resetInput,
+        checkInput: checkInput,
+        leftTodo: leftTodo
+    }
 
 };
 
-var TodoContainer = function($container) {
-
-}
-
-
-/* Resources *//*
-
-// Links
-http://stackoverflow.com/questions/16491758/remove-objects-from-array-by-object-property
-http://www.w3schools.com/html/html5_webstorage.asp
-
-// How many tasks are marked as done - SHORTHAND.
-todos.todolist
-	.map(function(todo) { return todo.done ? 1 : 0 })
-	.forEach(function(todo) { sum += todo });
-
-// How many tasks are marked as done. - EASY READ
-todos.todolist.filter(function(todo) { return todo.done });
-todos.todolist.filter(function(todo) { return todo.done }).length;
-
-// localStorage.lastname = "Smith";
-//localStorage.getItem("mtTodo");  // localStorage.lastname;
-//localStorage.removeItem("lastname");
-
-
-*/
+var TodoContainer = function($container) {}

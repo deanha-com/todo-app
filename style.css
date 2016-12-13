@@ -14,10 +14,9 @@ RULE 3: Never more than 3 nested selected
 html, body {
 	font-size: 10px;
 	font-family: "century gothic";
-	/* background-image: url('bg.jpg'); */
-	
-	background-color: #00bcd4;
+	background-image: url('bg.jpg');
 	/* background-color: #2d2d2d; */
+	/* background-color: #101010; */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -33,13 +32,16 @@ hr {
     background-image: linear-gradient(to right, #333, #ccc, #333);
 }
 
+h1 {
+	margin: 0;
+}
 
 /** TASK LIST STYLES */
 
 .todo {
   position: absolute;
   left: 50%;
-  top: 5%;
+  top: 15%;
   background: #2b2b2b;
   opacity: 0.85;
   color: white;
@@ -62,6 +64,8 @@ hr {
 	width: 100%;
 	border: none;
 	padding: 0.5em;
+	background: rgba(80, 80, 80, 0.67);
+	color: white;
 }
 
 .todo_add-item {
@@ -100,18 +104,6 @@ hr {
 .todo_item-delete:hover {
 transform: scale(1.2);
 }
-
-
-
-/*  */
-.done {
-	text-decoration: line-through;
-}
-
-
-.todo_task {
-
-} 
 
 :checked + .todo_task {
   opacity: 0.2;
