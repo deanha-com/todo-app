@@ -4,10 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo-App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div>
+    <h3 style="color:white;">TIME RECORD</h3>
+        <a href="#" class="btn start active">Ready to start</a>
+        <a href="#" class="btn onlunch">On Lunch</a>
+        <a href="#" class="btn hadlunch">I'm Back</a>
+        <a href="#" class="btn finish">Done for the day</a>
+    </ul>
+        
+    </div>
+
     <div class="widget">
         <article class="todo">
             <h1 class="todo_title">TO-DO DAILY</h1>
@@ -27,11 +38,11 @@
             <div>
                 <label>
 					<input type="checkbox" {{done}}>
-					<span class="todo_task">{{label}}</span>
-				</label>
+                <span class="todo_task">{{label}}</span>
+                </label>
                 <button class="todo_item-delete">Delete</button>
             </div>
-        </li>
+        
     </script>
 
     <script src="todo.js"></script>

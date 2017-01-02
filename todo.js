@@ -255,12 +255,17 @@ var TodoList = function($container) {
     function checkInput(thisEvent) {
         if (thisEvent.keyCode == 13) { // enter key
             console.log('you pressed ENTER');
+
             var taskValue = document.getElementById("todoInput").value;
-            addTask(taskValue);
-            resetInput();
+            if (taskValue.length < 1) {
+                console.log('nothing task to add...');
+            }
+            else {
+                addTask(taskValue);
+                resetInput();
+            }
         }
     }
-
 
     // HTML functions
     // 1. Grab all the elements

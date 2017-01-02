@@ -26,3 +26,14 @@ window.onload = function() {
     };
     window.todos = todos;
 }
+
+
+document.querySelector(".btn").addEventListener("click", nextButton);
+
+
+function nextButton() {
+    this.style.visibility = 'hidden';
+    console.log(document.querySelector('a').nextSibling);
+    this.nextElementSibling.className += " active";
+    console.log(this.nextElementSibling);
+};
