@@ -1,7 +1,7 @@
 window.onload = function() {
-    var x = new Date();
+    // var x = new Date();
 
-    localStorage.setItem('startTime', x);
+    // localStorage.setItem('startTime', x);
     console.log('Started on: ' + localStorage.getItem('startTime'));
 
     var todos = new TodoList(document.getElementById('todo'));
@@ -41,8 +41,6 @@ function getTime() {
     var btnClicked = this.className;
     var state;
 
-    alert(btnClicked);
-
     switch (btnClicked) {
         case 'btn start':
             state= "start";
@@ -58,7 +56,6 @@ function getTime() {
             break;
 
     }
-    alert(state);
 
     localStorage.setItem(state, d);
     console.log('Started on: ' + localStorage.getItem('start'));
