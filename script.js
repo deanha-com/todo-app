@@ -27,13 +27,51 @@ window.onload = function() {
     window.todos = todos;
 }
 
+var btns = document.querySelectorAll('.btn');
 
-document.querySelector(".btn").addEventListener("click", nextButton);
+Array.prototype.forEach.call(btns, function addClickListener(btn) {
+  btn.addEventListener('click', getTime);
+});
 
+function getTime() {
+    var d = formatAMPM(new Date());
+    console.log(d);
+    this.innerHTML = d;
+    this.style.pointerEvents = "none";
+    var btnClicked = this.className;
+    var state;
 
-function nextButton() {
-    this.style.visibility = 'hidden';
-    console.log(document.querySelector('a').nextSibling);
-    this.nextElementSibling.className += " active";
-    console.log(this.nextElementSibling);
+    alert(btnClicked);
+
+    switch (btnClicked) {
+        case 'btn start':
+            state= "start";
+            break;
+        case 'btn onlunch':
+            state= "onlunch";
+            break;
+        case 'btn hadlunch':
+            state= "hadlunch";
+            break;
+        case 'btn finish':
+            state= "finish";
+            break;
+
+    }
+    alert(state);
+
+    localStorage.setItem(state, d);
+    console.log('Started on: ' + localStorage.getItem('start'));
+
 };
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}

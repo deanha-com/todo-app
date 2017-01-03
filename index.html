@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo-App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <div>
     <h3 style="color:white;">TIME RECORD</h3>
-        <a href="#" class="btn start active">Ready to start</a>
-        <a href="#" class="btn onlunch">On Lunch</a>
-        <a href="#" class="btn hadlunch">I'm Back</a>
-        <a href="#" class="btn finish">Done for the day</a>
+        <div class="buttons">        
+            <a href="#" class="btn start">Ready to start</a>
+            <a href="#" class="btn onlunch">On Lunch</a>
+            <a href="#" class="btn hadlunch">I'm Back</a>
+            <a href="#" class="btn finish">Done for the day</a>
+        </div>
     </ul>
         
     </div>
@@ -29,7 +31,7 @@
             <input class="todo_add-item" type="submit" value="Add" name="add">
             <!-- </form> -->
             <ul id="todo" class="todo_list"></ul>
-            <p class="todo_count">-</p>
+            <span class="todo_count">-</span>
         </article>
     </div>
 
@@ -38,7 +40,8 @@
             <div>
                 <label>
 					<input type="checkbox" {{done}}>
-                <span class="todo_task">{{label}}</span>
+                <div class="todo_task">{{label}}</div>
+
                 </label>
                 <button class="todo_item-delete">Delete</button>
             </div>
