@@ -48,15 +48,16 @@ function sameDay() {
     var today = new Date();
     var dd = today.getDate();
 
-    localStorage.setItem('currentdate', dd);
     var currentdate = localStorage.getItem('currentdate');
+    localStorage.setItem('currentdate', dd);
 
     if (currentdate == dd) {
         loadLocalS();
         console.log('You reloaded this page within the same day so we are going to load LocalStorage...');
 
     } else {
-        localStorage.clear();
+        console.log('new date, time records cleared')
+        clearTime();
     }
 }
 
