@@ -8,21 +8,21 @@ RULE 3: Never more than 3 nested selected
 
 * {
   box-sizing: border-box;
-	transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 html, body {
-	font-size: 10px;
-	font-family: "century gothic";
-	background-image: url('bg.jpg');
-	/* background-color: #2d2d2d; */
-	/* background-color: #101010; */
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-attachment: fixed;
-	height: 100%;
-	overflow: hidden;
+  font-size: 10px;
+  font-family: "century gothic";
+  /* background-image: url('bg.jpg'); */
+  /* background-color: #00BCD4; */
+  background-color: #1f1c1c;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100%;
+  overflow: hidden;
 }
 
 hr {
@@ -34,7 +34,7 @@ hr {
 }
 
 h1 {
-	margin: 0;
+  margin: 0;
 }
 
 /** TASK LIST STYLES */
@@ -54,40 +54,40 @@ h1 {
 }
 
 .todo_title {
-	font-size: 3em;
+  font-size: 3em;
 }
 
 .todo_desc {
-	font-size: 1.4em;
+  font-size: 1.4em;
 }
 
 .todo_input {
-	width: 100%;
-	border: none;
-	padding: 0.5em;
-	background: rgba(80, 80, 80, 0.67);
-	color: white;
+  width: 100%;
+  border: none;
+  padding: 0.5em;
+  background: rgba(80, 80, 80, 0.67);
+  color: white;
 }
 
 .todo_add-item {
-	display: none;
-	width: 20%;
-	border: none;
-	padding: 0.5em;
+  display: none;
+  width: 20%;
+  border: none;
+  padding: 0.5em;
 }
 
 .todo_list, .todo_list_boiler {
-	list-style: none;
-	padding-left: 0em;
+  list-style: none;
+  padding-left: 0em;
 }
 
 
 .todo_item {
-	line-height: 2;
+  line-height: 2;
 }
 
 .todo_item-delete {
-	float: right;
+  float: right;
   background-color: rgba(80, 80, 80, 0.5);
   border: none;
   color: white;
@@ -110,7 +110,7 @@ opacity: 1;
 }
 
 input[type="checkbox" i] {
-		position: absolute;
+    position: absolute;
     margin: 8px 3px 3px 4px;
 }
 
@@ -124,7 +124,7 @@ input[type="checkbox" i] {
     background: rgba(0, 0, 0, 0.8);
     text-decoration: none;
     color: #fff;
-    padding: 6px 5px;
+    padding: 3px 5px;
     opacity: 0.85;
     font-size: 1.2em;
     /* position: absolute; */
@@ -132,7 +132,7 @@ input[type="checkbox" i] {
 }
 
 .active {
-	display: block;
+  display: block;
 }
 
 .todo_task:hover {
@@ -151,12 +151,26 @@ opacity: 0.5;
   font-size: 1.2em;
 }
 
+.buttons { padding:  5px; }
+
+.saveLog {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  color: #fff;
+  padding: 1px 4px;
+  opacity: 0.85;
+  font-size: 1.2em;
+}
+
 
 /* FOR MOBILE DEVICES
 /***********************************************************************/
 @media only screen and (max-width: 500px) {
     html, body {
-    	overflow: visible;
+      overflow: visible;
     }
 
     .todo {

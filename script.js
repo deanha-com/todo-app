@@ -1,4 +1,5 @@
 
+
 /**
 * Script for the Time Recording and LocalStorage Functions
 */
@@ -132,3 +133,42 @@ window.onload = function() {
 
     window.todos = todos;
 };
+
+
+function saveDayLog() {
+    localStorage.setItem(formatDate(new Date()),
+        '{start : '+localStorage.start+'} ' +
+        '{onlunch : ' + localStorage.onlunch+'} ' +
+        '{hadlunch : ' +localStorage.hadlunch+'} ' + 
+        '{finish :' + localStorage.finish +'} ');
+}
+
+function formatDate(date) {
+    var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+
+
+function confirmSave() {
+    var resp = confirm('Save today\'s time log?');
+    if (resp) {
+        saveDayLog();
+    // alert('okay lets save');
+    } else {
+    // alert('dont save;');
+    }
+}
+
+
+window.onbeforeunload = confirmSave();
+document.querySelector('.saveLog').onclick = saveDayLog;
