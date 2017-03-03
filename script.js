@@ -170,5 +170,18 @@ function confirmSave() {
 }
 
 
-window.onbeforeunload = confirmSave();
+// window.onbeforeunload = confirmSave();
 document.querySelector('.saveLog').onclick = saveDayLog;
+
+
+document.getElementById("minimize").addEventListener("click", todoToggle);
+
+
+function todoToggle() {
+    var d = document.getElementById("todo_widget");
+    if(d.className=="todo") {
+        d.className = "todo active";
+    } else {
+        d.className = "todo";
+    }
+}

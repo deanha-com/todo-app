@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body class="bggrad">
     <div>
         <div class="buttons">        
             <a href="#" class="btn start">Ready to start</a>
@@ -24,7 +24,8 @@
     </div>
 
     <div class="widget">
-        <article class="todo">
+        <article id="todo_widget" class="todo">
+
             <h1 class="todo_title">TO-DO DAILY</h1>
             <!-- <form> -->
             <label for="todoInput" class="todo_desc">What do you want to do today?</label>
@@ -35,6 +36,7 @@
             <ul id="todo" class="todo_list"></ul>
             <span class="todo_count">-</span>
         </article>
+        <div id="minimize">TODO +</div>
     </div>
 
     <script type="text/template" id="todo-item-template">
