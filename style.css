@@ -66,7 +66,7 @@ html, body {
 .welcome {
   font-size: large;
   text-align: center;
-  top: 20%;
+  top: 45%;
   position: relative;
   margin: 0 auto;
   color: white;
@@ -230,6 +230,12 @@ opacity: 0.5;
   padding: 1px 4px;
   opacity: 0.99;
   font-size: 1.2em;
+}
+
+#user:focus {
+border-bottom: 5px solid white;
+box-shadow: none;
+/* background: pink; */
 }
 
 

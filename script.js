@@ -23,6 +23,7 @@ function loadLocalS() {
             console.log(localStorage.getItem(e));
             document.querySelector('.'+e).innerHTML = localStorage.getItem(e);
             document.querySelector('.'+e).style.pointerEvents = "none";
+            document.getElementById("user").innerHTML = localStorage.getItem('userName');
         }
         else {
             console.log('nothing here');
@@ -112,6 +113,7 @@ window.onload = function() {
     console.log('Started on: ' + localStorage.getItem('start'));
     var todos = new TodoList(document.getElementById('todo'));
 
+    saveLoadName();
     sameDay();
     todos.loadData();
     todos.leftTodo();
@@ -184,4 +186,11 @@ function todoToggle() {
     } else {
         d.className = "todo";
     }
+}
+
+function saveLoadName() {
+    var x = document.getElementById("user");
+    localStorage.setItem('userName',x.innerHTML);
+    console.log('out');
+    // x.innerHTML = localStorage.getItem('userName');
 }
