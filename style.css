@@ -14,10 +14,10 @@ RULE 3: Never more than 3 nested selected
 html, body {
   font-size: 10px;
   font-family: "century gothic";
-  background-image: url('bg.jpg');
+  /* background-image: url('bg.jpg'); */
   /* background-color: #00BCD4; */
 
-  /* background-color: #1f1c1c; */
+  background-color: #1f1c1c;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

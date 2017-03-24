@@ -1,5 +1,3 @@
-
-
 /**
 * Script for the Time Recording and LocalStorage Functions
 */
