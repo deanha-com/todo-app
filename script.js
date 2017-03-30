@@ -3,7 +3,7 @@
 */
 
 
-//Listen to when a button is clicked. If its clicked run the getTime() on that particular butto)
+//Listen to when a button is clicked. If its clicked run the getTime() on that particular button)
 //
 var btns = document.querySelectorAll('.btn');
 var localStorageKeys = ['start','onlunch','hadlunch','finish'];
@@ -69,7 +69,7 @@ function getTime() {
     var d = formatAMPM(new Date());
     console.log(d);
     this.innerHTML = d;
-    this.style.pointerEvents = "none";
+    // this.style.pointerEvents = "none";
     var btnClicked = this.className;
     var state;
 
@@ -89,6 +89,7 @@ function getTime() {
     }
 
     localStorage.setItem(state, d);
+    saveDayLog();
 }
 
 // Convert time to AM or PM
@@ -189,6 +190,26 @@ function todoToggle() {
 function saveLoadName() {
     var x = document.getElementById("user");
     localStorage.setItem('userName',x.innerHTML);
-    console.log('out');
+    console.log('out of userName');
     // x.innerHTML = localStorage.getItem('userName');
 }
+
+var startShiftTime = 20;
+var finishShiftTime = 19;
+
+function checkTime () {
+    if(new Date().getMinutes() > (startShiftTime -1) ) {
+        console.log(new Date().getMinutes());
+        if (confirm('Hey Dean, are you ready to START?')) {
+            // Save it!
+            document.getElementById("startBtn").click();
+            console.log("true saved");
+
+        } else {
+            // Do nothing!
+            console.log("false bye");
+        }
+    } 
+}
+
+// document.getElementById("myCheck").click();
