@@ -132,6 +132,7 @@ window.onload = function() {
             console.log('nothing to add');
         }
     };
+    letsBegin();
 
     window.todos = todos;
 };
@@ -219,4 +220,3 @@ function letsBegin() {
         }
     } 
 }
-letsBegin();
