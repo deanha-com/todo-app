@@ -58,6 +58,7 @@ function sameDay() {
     } else {
         console.log('new date, time records cleared')
         clearTime();
+
     }
 }
 
@@ -194,22 +195,28 @@ function saveLoadName() {
     // x.innerHTML = localStorage.getItem('userName');
 }
 
-var startShiftTime = 20;
+var startShiftTime = 10;
 var finishShiftTime = 19;
 
-function checkTime () {
-    if(new Date().getMinutes() > (startShiftTime -1) ) {
-        console.log(new Date().getMinutes());
-        if (confirm('Hey Dean, are you ready to START?')) {
-            // Save it!
-            document.getElementById("startBtn").click();
-            console.log("true saved");
-
+function letsBegin() {
+    if(new Date().getHours() > (startShiftTime -1) ) {
+        console.log(new Date().getHours());
+        if (localStorage.start) {
+            console.log('we\'ve already started');
         } else {
-            // Do nothing!
-            console.log("false bye");
+
+            if (confirm('Hey Dean, are you ready to START?')) {
+                // Save it!
+                document.getElementById("startBtn").click();
+                console.log("true saved");
+                var started = true;
+
+            } else {
+                // Do nothing!
+                console.log("false bye");
+                var started = false;
+            }
         }
     } 
 }
-
-// document.getElementById("myCheck").click();
+letsBegin();
