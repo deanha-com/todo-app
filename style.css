@@ -14,9 +14,8 @@ RULE 3: Never more than 3 nested selected
 html, body {
   font-size: 10px;
   font-family: "century gothic";
-  /* background-image: url('bg.jpg'); */
+  background-image: url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg');
   /* background-color: #00BCD4; */
-
   background-color: #1f1c1c;
   background-size: cover;
   background-repeat: no-repeat;
@@ -86,6 +85,10 @@ h1 {
 }
 
 /** TASK LIST STYLES */
+
+#todo_widget:hover {
+  opacity: 1;
+}
 
 .todo {
   position: absolute;

@@ -178,6 +178,7 @@ document.querySelector('.saveLog').onclick = saveDayLog;
 
 
 document.getElementById("minimize").addEventListener("click", todoToggle);
+document.getElementById("todo_widget").addEventListener("click", todoToggle);
 
 
 function todoToggle() {
@@ -220,3 +221,4 @@ function letsBegin() {
         }
     } 
 }
+
