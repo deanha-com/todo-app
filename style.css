@@ -1,11 +1,12 @@
+/****
+ * RULE 1: Selectors in order of specifity. Any selector should trump everything before it. Generic > Specific
+ * RULE 2: Only one pixel value on the sheet, everything else should be em or rem.
+ * RULE 3: Never more than 3 nested selected
+ ****/
+
 /**
-RULE 1: Selectors in order of specifity. Any selector should trump everything before it. Generic > Specific
-RULE 2: Only one pixel value on the sheet, everything else should be em or rem.
-RULE 3: Never more than 3 nested selected
-**/
-
-/** CONTAINER STYLES **/
-
+ * Container Styles
+ */
 * {
   box-sizing: border-box;
   transition: all 0.25s ease-out;
@@ -24,6 +25,34 @@ html, body {
   height: 100%;
   overflow: hidden;
   margin: 0;
+}
+
+hr {
+    border: 0;
+    margin: 1em;
+    height: 0.1em;
+    background: none;
+    background-image: linear-gradient(to right, #333, #ccc, #333);
+}
+
+h1 {
+  margin: 0;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
 }
 
 .noselect {
@@ -45,46 +74,19 @@ html, body {
 
 }
 
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 84%}
-    50%{background-position:100% 17%}
-    100%{background-position:0% 84%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 84%}
-    50%{background-position:100% 17%}
-    100%{background-position:0% 84%}
-}
-@keyframes AnimationName { 
-    0%{background-position:0% 84%}
-    50%{background-position:100% 17%}
-    100%{background-position:0% 84%}
-}
-
-
 .welcome {
   font-size: large;
   text-align: center;
-  top: 45%;
+  top: 35%;
   position: relative;
   margin: 0 auto;
   color: white;
 }
 
+/**
+ * Todo Task List Styling
+ */
 
-hr {
-    border: 0;
-    margin: 1em;
-    height: 0.1em;
-    background: none;
-    background-image: linear-gradient(to right, #333, #ccc, #333);
-}
-
-h1 {
-  margin: 0;
-}
-
-/** TASK LIST STYLES */
 
 #todo_widget:hover {
   opacity: 1;
@@ -150,9 +152,8 @@ h1 {
   opacity: 0.3;
 }
 
-
 .todo_item-delete:hover {
-opacity: 1;
+  opacity: 1;
 }
 
 .todo_task {
@@ -161,8 +162,8 @@ opacity: 1;
 }
 
 input[type="checkbox" i] {
-    position: absolute;
-    margin: 8px 3px 3px 4px;
+  position: absolute;
+  margin: 8px 3px 3px 4px;
 }
 
 :checked + .todo_task {
@@ -171,41 +172,32 @@ input[type="checkbox" i] {
   text-decoration: line-through;
 }
 
-.btn {
-    background: rgba(0, 0, 0, 0.8);
-    text-decoration: none;
-    color: #fff;
-    padding: 3px 5px;
-    opacity: 0.99;
-    font-size: 1.2em;
-    /* position: absolute; */
-    /* display: none; */
+.buttons {
+  padding:  5px;
+  margin-top: 3px;
 }
 
-.active {
-  display: block;
-}
-
-.todo_task:hover {
-opacity: 0.5;
-}
-
-.clearTime {
-  position: relative;
-  /* right: 0; */
-  /* top: 0; */
+.btn, .clearTime{
   background: rgba(0, 0, 0, 0.8);
   text-decoration: none;
   color: #fff;
   padding: 3px 5px;
   opacity: 0.99;
   font-size: 1.2em;
+  border: 1px solid rgba(192, 192, 192, 0.3);
 }
 
-.buttons { padding:  5px; margin-top: 3px;}
+.clearTime {
+  position: relative;
+}
 
 .active {
+  display: block;
   opacity: 0.99;
+}
+
+.todo_task:hover {
+  opacity: 0.5;
 }
 
 #minimize {
@@ -220,7 +212,6 @@ opacity: 0.5;
   top: 5px;
   right: 5px;
   cursor: pointer;
-
 }
 
 .saveLog {
@@ -236,21 +227,31 @@ opacity: 0.5;
 }
 
 #user:focus {
-border-bottom: 5px solid white;
-box-shadow: none;
-/* background: pink; */
+  border-bottom: 5px solid white;
+  box-shadow: none;
+  /* background: pink; */
+}
+
+.ads {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  margin: 5px auto;
+  opacity: 0.95;
+  text-align: center;
 }
 
 
-/* FOR MOBILE DEVICES
-/***********************************************************************/
+/**
+ * For Mobile Responsiveness
+ */
 @media only screen and (max-width: 500px) {
-    html, body {
-      overflow: visible;
-    }
+  html, body {
+    overflow: visible;
+  }
 
-    .todo {
-        padding:  0.5em;
-    }
-
+  .todo {
+    padding: 1em;
+    margin-top: 30px;
+  }
 }

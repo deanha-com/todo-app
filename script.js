@@ -1,10 +1,9 @@
 /**
-* Script for the Time Recording and LocalStorage Functions
-*/
+ * Script for the Time Recording and LocalStorage Functions
+ */
 
 
 //Listen to when a button is clicked. If its clicked run the getTime() on that particular button)
-//
 var btns = document.querySelectorAll('.btn');
 var localStorageKeys = ['start','onlunch','hadlunch','finish'];
 
