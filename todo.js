@@ -1,10 +1,9 @@
 'use strict';
 
-/******************************************************************************
- * THE MAIN FUNCTION THAT HANDLES EACH TASK - CREATE, EDIT, UPDATE AND DELETE.
- * LISTEN TO CHANGES.
- ******************************************************************************/
-
+/* --------------------------------------------------------------------------------- */
+/* THE MAIN FUNCTION THAT HANDLES EACH TASK - CREATE, EDIT, UPDATE AND DELETE.
+/* LISTEN TO CHANGES.
+/* --------------------------------------------------------------------------------- */
 var Todo = function(uid, label, done, template, onDelete) {
     var label = label;
     var uid = uid;
@@ -83,10 +82,10 @@ var Todo = function(uid, label, done, template, onDelete) {
     }
 }
 
-/******************************************************************************
- * BE AS BASIC AND DUMP AS POSSIBLE + DOES NOT CARE ABOUT STATE CHANGES
- * HANDLES THE WHOLE LIST.
- ******************************************************************************/
+/* --------------------------------------------------------------------------------- */
+/* BE AS BASIC AND DUMP AS POSSIBLE + DOES NOT CARE ABOUT STATE CHANGES
+/* HANDLES THE WHOLE LIST.
+/* --------------------------------------------------------------------------------- */
 
 var TodoList = function($container) {
 
