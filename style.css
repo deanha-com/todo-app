@@ -15,7 +15,7 @@
 html, body {
   font-size: 10px;
   font-family: "century gothic";
-  background-image: url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg');
+  /* background-image: url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg'); */
   /* background-color: #00BCD4; */
   background-color: #1f1c1c;
   background-size: cover;
@@ -233,11 +233,14 @@ input[type="checkbox" i] {
 
 .ads {
   position: absolute;
-  bottom: 10px;
+  bottom: 24px;
   width: 100%;
   margin: 5px auto;
-  opacity: 0.95;
   text-align: center;
+}
+
+.pinned {
+  background: rgba(3, 169, 244, 0.8) !important;
 }
 
 
