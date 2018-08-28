@@ -1,0 +1,31 @@
+{
+   "user-profile":{
+      "id":"95202806",
+      "name":"Dean"
+   },
+   "settings":{
+      "notify":true,
+      "zen-mode":true,
+      "todo-widget-active":false,
+      "donate-box":true,
+      "daily-quotes":"Do what you got to do",
+      "bg-image":"https://deanha.com/wp-content/uploads/2014/03/gallery-15-800x500.jpg"
+   },
+   "data-sets":{
+      "2-02-2018":{
+         "start":"8:42 am",
+         "onlunch":"undefined",
+         "hadlunch":"undefined",
+         "finish":"undefined"
+      },
+      "3-02-2018":{
+         "start":"8:42 am",
+         "onlunch":"12:45 pm",
+         "hadlunch":"undefined",
+         "finish":"6: 00pm"
+      }
+   }
+}
+// This is an example of an user json export, the json will be stored on local storage.
+// The data will be loaded from local storage by default. But user will also be able to import their data-log in the future.
+// It would be good to have auto sync, but that will be on a Pro version maybe?
