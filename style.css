@@ -140,16 +140,20 @@ h1 {
 }
 
 .todo_item-delete {
+  position: relative;
   float: right;
   background-color: rgba(80, 80, 80, 0.5);
   border: none;
   color: white;
-  text-align: center;
   text-decoration: none;
   display: block;
-  margin-top: -20px;
+  top: -22px;
   z-index: 10;
-  opacity: 0.3;
+  opacity: 0.5;
+  border-radius: 15px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 .todo_item-delete:hover {
@@ -213,6 +217,7 @@ input[type="checkbox" i] {
   cursor: pointer;
 }
 
+
 .saveLog {
   position: absolute;
   right: 0;
@@ -243,6 +248,13 @@ input[type="checkbox" i] {
   background: rgba(3, 169, 244, 0.8) !important;
 }
 
+#todo_widget.expand {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  width: 80%;
+  margin: 30px auto;
+}
+
 
 /**
  * For Mobile Responsiveness
@@ -253,7 +265,11 @@ input[type="checkbox" i] {
   }
 
   .todo {
-    padding: 1em;
+    padding: 1.5em;
     margin-top: 30px;
+  }
+
+  .btn, .clearTime {
+    display: table;
   }
 }
