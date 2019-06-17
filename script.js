@@ -211,7 +211,7 @@ function todoToggle() {
 
 function saveLoadName() {
     var x = document.getElementById("user");
-    console.log('out of userName');
+    console.log('loaded from userName from localStorage');
  
     x.addEventListener("input", function() {
         var userText = document.getElementById("user").innerHTML;
@@ -261,6 +261,8 @@ window.mobilecheck = function() {
 
 if (!window.mobilecheck()) {
     document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg')";
+    // document.body.style.backgroundImage = "url('http://cdn.wallpapername.com/1680x1050/20140408/video%20games%20robots%20eclipse%20aliens_www.wallpapername.com_79.jpg')";
+    
 }
 
 
