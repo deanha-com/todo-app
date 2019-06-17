@@ -2,23 +2,26 @@
 <html lang="en" class="noselect">
 
 <head>
+
     <meta charset="UTF-8">
     <title>Todo-App</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body class="bggrad-disabled">
+    <!-- ▶️ ⏸ ⏹ ⏺ ⏏️ -->
     <div>
-        <div class="buttons">        
+        <div class="buttons"> 
+
             <a id="startBtn" href="#" class="btn start">Ready to start</a>
             <a href="#" class="btn onlunch">On Lunch</a>
             <a href="#" class="btn hadlunch">I'm Back</a>
             <a href="#" class="btn finish">Done for the day</a>
             <a href="#" class="clearTime">X</a>
-            <a href="#" class="saveLog">
-                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5IDQ5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0OSA0OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik0zOS45MTQsMEgzNy41aC0yOGgtOXY0OWg3aDMzaDhWOC41ODZMMzkuOTE0LDB6IE0zNS41LDJ2MTRoLTI0VjJIMzUuNXogTTkuNSw0N1YyOGgyOXYxOUg5LjV6IE00Ni41LDQ3aC02VjI2aC0zM3YyMWgtNSAgIFYyaDd2MTZoMjhWMmgxLjU4Nkw0Ni41LDkuNDE0VjQ3eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTEzLjUsMzNoN2MwLjU1MywwLDEtMC40NDcsMS0xcy0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMVMxMi45NDcsMzMsMTMuNSwzM3oiIGZpbGw9IiNGRkZGRkYiLz4KCTxwYXRoIGQ9Ik0yMy41LDM1aC0xMGMtMC41NTMsMC0xLDAuNDQ3LTEsMXMwLjQ0NywxLDEsMWgxMGMwLjU1MywwLDEtMC40NDcsMS0xUzI0LjA1MywzNSwyMy41LDM1eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTI1Ljc5LDM1LjI5Yy0wLjE4MSwwLjE4OS0wLjI5LDAuNDUtMC4yOSwwLjcxczAuMTA5LDAuNTIsMC4yOSwwLjcxQzI1Ljk3OSwzNi44OSwyNi4yMjksMzcsMjYuNSwzNyAgIGMwLjI2LDAsMC41Mi0wLjExLDAuNzEtMC4yOWMwLjE4LTAuMTksMC4yOS0wLjQ1LDAuMjktMC43MXMtMC4xMS0wLjUyMS0wLjI5LTAuNzFDMjYuODQsMzQuOTIsMjYuMTYsMzQuOTIsMjUuNzksMzUuMjl6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMzMuNSw0aC02djEwaDZWNHogTTMxLjUsMTJoLTJWNmgyVjEyeiIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" height="20px"/>
-            </a>
+            <a href="#" class="saveLog">💾</a>
+
         </div>
     </div>
 
@@ -33,13 +36,16 @@
          </ins>
     </div>
         
-    <div class="welcome" style="display: none;">
-        <h1>Hey <span id="user" contenteditable="true" spellcheck="false" onfocusout="saveLoadName()">Dean</span>.</h1>
+    <div class="welcome" style="display: block;">
+        <h1><span id="greeting">Hey</span> <span id="user" contenteditable="true" spellcheck="false" onfocusout="saveLoadName()">there</span>.</h1>
     </div>
 
     <div class="widget">
-        <div id="minimize">TODO +</div>
+
+        <div id="minimize">📌</div>
+
         <article id="todo_widget" class="todo">
+            <span class="maximise" onclick="maximise()"></span>
             <h1 class="todo_title">TO-DO DAILY</h1>
             <!-- <form> -->
             <label for="todoInput" class="todo_desc">What do you want to do today?</label>
@@ -50,6 +56,7 @@
             <ul id="todo" class="todo_list"></ul>
             <span class="todo_count">-</span>
         </article>
+
     </div>
 
     <script type="text/template" id="todo-item-template">

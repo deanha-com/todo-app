@@ -104,6 +104,7 @@ h1 {
   /* transform: translate(-50%, 0); */
   width: 40em;
   max-width: 100%;
+  border-radius: 15px;
 }
 
 .todo_title {
@@ -189,6 +190,8 @@ input[type="checkbox" i] {
   opacity: 0.99;
   font-size: 1.2em;
   border: 1px solid rgba(192, 192, 192, 0.3);
+  border-radius: 15px;
+  margin: 3px auto;
 }
 
 .clearTime {
@@ -205,16 +208,17 @@ input[type="checkbox" i] {
 }
 
 #minimize {
-  z-index: 10;
-  background: rgb(72, 72, 72);
-  color: white;
-  text-align: center;
-  padding: 5px 5px;
-  border: none;
   position: absolute;
   top: 5px;
   right: 5px;
+  z-index: 10;
+  background: rgb(72, 72, 72);
+  padding: 5px 5px;
+  color: white;
+  text-align: center;
+  border: none;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 
@@ -225,9 +229,7 @@ input[type="checkbox" i] {
   background: rgba(0, 0, 0, 0.8);
   text-decoration: none;
   color: #fff;
-  padding: 1px 4px;
-  opacity: 0.99;
-  font-size: 1.2em;
+  font-size: 2em;
 }
 
 #user:focus {
@@ -250,11 +252,29 @@ input[type="checkbox" i] {
 
 #todo_widget.expand {
   position: relative;
-  background: rgba(0, 0, 0, 0.3);
-  width: 80%;
+  background: rgba(40, 40, 40, 0.7);
+  width: 50%;
   margin: 30px auto;
+  border-radius: 15px;
 }
 
+
+.maximise:before {
+  content: " ➕ ";
+  cursor: pointer;
+}
+
+.expand .maximise:before {
+  content: " ➖ ";
+  cursor: pointer;
+}
+
+.maximise { 
+  position: absolute;
+  right: 35px;
+  top: 4px;
+  /* font-size: 1.4em; */
+}
 
 /**
  * For Mobile Responsiveness

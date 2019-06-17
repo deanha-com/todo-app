@@ -20,7 +20,10 @@ function loadLocalS() {
             console.log(localStorage.getItem(e));
             document.querySelector('.'+e).innerHTML = localStorage.getItem(e);
             document.querySelector('.'+e).style.pointerEvents = "none";
-            document.getElementById("user").innerHTML = localStorage.getItem('userName');
+            if (localStorage.getItem('userName') !== '') {
+
+                document.getElementById("user").innerHTML = localStorage.getItem('userName');
+            }
         }
         else {
             console.log('nothing here');
@@ -179,6 +182,10 @@ document.querySelector('.saveLog').onclick = saveDayLog;
 document.getElementById("minimize").addEventListener("click", todoToggle);
 // document.getElementById("todo_widget").addEventListener("click", todoToggle);
 
+function maximise() {
+    var element = document.getElementById("todo_widget");
+    element.classList.toggle("expand");
+}
 
 function todoToggle() {
     var p = document.getElementById("minimize");
@@ -195,18 +202,28 @@ function todoToggle() {
         p.className = "";
     }
 
-    if(p.innerHTML =="TODO +") {
-        p.innerHTML = "TODO -";
+    if(p.innerHTML =="📌") {
+        p.innerHTML = "📌";
     } else {
-        p.innerHTML ="TODO +";
+        p.innerHTML ="📌";
     }
 }
 
 function saveLoadName() {
     var x = document.getElementById("user");
-    localStorage.setItem('userName',x.innerHTML);
     console.log('out of userName');
-    // x.innerHTML = localStorage.getItem('userName');
+ 
+    x.addEventListener("input", function() {
+        var userText = document.getElementById("user").innerHTML;
+        localStorage.setItem('userName',userText);
+        console.log("input event fired");
+    }, false);
+
+    document.getElementById('user').addEventListener('keypress', function(evt) {
+        if (evt.which === 13) {
+            evt.preventDefault();
+        }
+    });
 }
 
 var startShiftTime = 10;
@@ -249,3 +266,24 @@ if (!window.mobilecheck()) {
 
 // Load adsense after 5secs
 setTimeout(function() { (adsbygoogle = window.adsbygoogle || []).push({}); console.log('ads loaded'); }, 5000);
+
+function greetingMsg() {
+    let timeNow = new Date().getHours();
+    let greetMsg = document.getElementById("greeting");
+
+    if ( timeNow < 12) {
+
+        greetMsg.innerHTML = "Good morning";
+
+    } else if (timeNow > 12) {
+
+        greetMsg.innerHTML = "Good afternoon";
+
+    } else if (timeNow > 18) {
+
+        greetMsg.innerHTML = "Good evening";
+
+    }
+
+}
+greetingMsg();
