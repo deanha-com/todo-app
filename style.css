@@ -121,6 +121,8 @@ h1 {
   padding: 0.5em;
   background: rgba(80, 80, 80, 0.67);
   color: #fff;
+  border-radius: 8px;
+
 }
 
 .todo_add-item {
@@ -153,7 +155,7 @@ h1 {
   opacity: 0.5;
   border-radius: 15px;
   text-align: center;
-  /* padding: 0; */
+  padding: 2px;
   margin: 0;
 }
 
@@ -230,23 +232,6 @@ input[type="checkbox" i] {
     font-size: 1.5em;
 }
 
-
-.saveLog {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  text-decoration: none;
-  color: #fff;
-  font-size: 2em;
-}
-
-.saveLog:hover {
-    font-size: 3em;
-    bottom: 5px;
-    right: 5px;
-}
-
 #user:focus {
   border-bottom: 5px solid white;
   box-shadow: none;
@@ -268,7 +253,6 @@ input[type="checkbox" i] {
 
 #todo_widget.expand {
   position: relative;
-  background: rgba(40, 40, 40, 0.7);
   width: 50%;
   margin: 30px auto;
   border-radius: 15px;
@@ -290,6 +274,12 @@ input[type="checkbox" i] {
   right: 35px;
   top: 4px;
   /* font-size: 1.4em; */
+}
+
+
+.expand .todo_title, .expand .todo_desc {
+  text-align: center;
+  display: block;
 }
 
 /**
@@ -319,18 +309,45 @@ input[type="checkbox" i] {
 
 .pos-bottom-left {
   position: absolute;
-  bottom: 0;
   left: 0;
-      
+  bottom: 0;
+  background:rgba(64, 64, 64, 0.8);
 }
 
 .settings-btn {
+  color: #fff;      
   text-decoration: none;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .settings-btn:hover {
-  font-size: 3em;
+  font-size: 2em;
+  bottom: 5px;
+  left: 5px;
+}
+
+.pos-bottom-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background:rgba(64, 64, 64, 0.8);
+  
+}
+
+.saveLog {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.saveLog:hover {
+  font-size: 2em;
   bottom: 5px;
   right: 5px;
+}
+
+.round {
+  padding: 5px;
+  border-radius: 30px;
+  margin: 5px;
 }
