@@ -65,6 +65,20 @@
         </article>
 
     </div>
+    
+
+     <script type="text/template" id="todo-item-template">
+         <li class="todo_item" draggable="true" data-qid="{{uid}}">
+            <div>
+                <label>
+					<input type="checkbox" {{done}}>
+                <div class="todo_task">{{label}}</div>
+
+                </label>
+                <button class="todo_item-delete">❌</button>
+            </div>
+        </li>
+    </script>
 
 
     <script defer src="todo.js"></script>
