@@ -188,24 +188,25 @@ function maximise() {
 }
 
 function todoToggle() {
-    var p = document.getElementById("minimize");
-    var d = document.getElementById("todo_widget");
-    if(d.className=="todo") {
-        d.className = "todo active";
+    var minimizeBtn = document.getElementById("minimize");
+    var expand = document.querySelector(".maximise");
+    var widget = document.getElementById("todo_widget");
+    if(widget.className=="todo") {
+        widget.classList.toggle("active");
     } else {
-        d.className = "todo";
+        widget.classList.toggle("active");
     }
 
-    if(p.className=="") {
-        p.className = "pinned";
+    if(minimizeBtn.className=="") {
+        minimizeBtn.className = "pinned";
     } else {
-        p.className = "";
+        minimizeBtn.className = "";
     }
 
-    if(p.innerHTML =="📌") {
-        p.innerHTML = "📌";
+    if(minimizeBtn.innerHTML =="📌") {
+        minimizeBtn.innerHTML = "📌";
     } else {
-        p.innerHTML ="📌";
+        minimizeBtn.innerHTML ="📌";
     }
 }
 
@@ -226,8 +227,8 @@ function saveLoadName() {
     });
 }
 
-var startShiftTime = 10;
-var finishShiftTime = 19;
+var startShiftTime = 8;
+var finishShiftTime = 17;
 
 function letsBegin() {
     if(new Date().getHours() > (startShiftTime -1) ) {
@@ -236,7 +237,12 @@ function letsBegin() {
             console.log('we\'ve already started');
         } else {
 
-            if (confirm('Hey Dean, are you ready to START?')) {
+            if (localStorage.userName !== undefined) {
+                var user = localStorage.userName;
+                document.getElementById("user").innerHTML = user;
+            }
+
+            if (confirm('Hey '+ user +', \nare you ready to START?')) {
                 // Save it!
                 document.getElementById("startBtn").click();
                 console.log("true saved");

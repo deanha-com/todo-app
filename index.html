@@ -5,9 +5,9 @@
 
     <meta charset="UTF-8">
     <title>My Todo-App</title>
-    <!-- <link rel="shortcut icon" type="image/png" href="/favicon.png"/> -->
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" type="image/png" href="./favicon.png"/> -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A front-end javascript todo app which also allows you to record your daily working hours. punch in and out.. more features coming soon.">
@@ -32,6 +32,13 @@
         </div>
     </div>
 
+
+    <div id="ad-wrapper">
+        <div class="adBar">
+            &nbsp;
+        </div>
+    </div>
+
     <div class="ads">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Responsive Ad -->
@@ -42,6 +49,17 @@
              data-ad-format="auto">
          </ins>
     </div>
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            if (document.getElementById("ad-wrapper").offsetHeight) {
+                document.getElementById("ad-wrapper").innerHTML = '<h2>😊</h2>';
+            } else {
+                document.getElementById("ad-wrapper").innerHTML = '<h2>AdBlock detected 😧</h2>';
+            }
+        }, 1000)
+        });
+    </script>
         
     <div class="welcome" style="display: block;">
         <h1><span id="greeting">Hey</span> <span id="user" contenteditable="true" spellcheck="false" onfocusout="saveLoadName()">there</span>.</h1>
