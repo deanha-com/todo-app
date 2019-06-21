@@ -273,7 +273,7 @@ if (!window.mobilecheck()) {
 
 
 // Load adsense after 5secs
-setTimeout(function() { (adsbygoogle = window.adsbygoogle || []).push({}); console.log('ads loaded'); }, 5000);
+// setTimeout(function() { (adsbygoogle = window.adsbygoogle || []).push({}); console.log('ads loaded'); }, 5000);
 
 function greetingMsg() {
     let timeNow = new Date().getHours();
@@ -283,11 +283,15 @@ function greetingMsg() {
 
         greetMsg.innerHTML = "Good morning";
 
-    } else if (timeNow > 12) {
+    }
+
+    if ( ( timeNow > 12 ) && ( timeNow < 18 ) ) {
 
         greetMsg.innerHTML = "Good afternoon";
 
-    } else if (timeNow > 18) {
+    }
+
+    if (timeNow > 18) {
 
         greetMsg.innerHTML = "Good evening";
 

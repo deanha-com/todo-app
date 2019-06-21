@@ -216,6 +216,7 @@ input[type="checkbox" i] {
 
 #minimize {
   position: absolute;
+  font-size: 1.5em;
   top: 5px;
   right: 5px;
   z-index: 10;
@@ -229,7 +230,8 @@ input[type="checkbox" i] {
 }
 
 #minimize:hover {
-    font-size: 1.5em;
+  font-size: 1.8em;
+  border-radius: 30px;
 }
 
 #user:focus {
@@ -277,7 +279,7 @@ input[type="checkbox" i] {
 }
 
 
-.expand .todo_title, .expand .todo_desc {
+.todo_title, .todo_desc {
   text-align: center;
   display: block;
 }
@@ -292,7 +294,9 @@ input[type="checkbox" i] {
 
   .todo {
     padding: 1.5em;
-    margin-top: 140px;
+    margin-top: 45px;
+    max-height: 85vh;
+    overflow: auto;
   }
 
   .btn, .clearTime {
@@ -302,16 +306,37 @@ input[type="checkbox" i] {
   #todo_widget.expand {
     position: absolute;
     width: 100%;
-    margin-top: 140px;
+    margin-top: 45px;
     background: rgba(40, 40, 40, 1);
   }
+
+  .buttons {
+    display: flex;
+    margin-right: 40px;
+  }
 }
+
+.pos-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background:rgba(64, 64, 64, 0.8);
+}
+
 
 .pos-bottom-left {
   position: absolute;
   left: 0;
   bottom: 0;
   background:rgba(64, 64, 64, 0.8);
+}
+
+.pos-bottom-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background:rgba(64, 64, 64, 0.8);
+  
 }
 
 .settings-btn {
@@ -326,13 +351,6 @@ input[type="checkbox" i] {
   left: 5px;
 }
 
-.pos-bottom-right {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background:rgba(64, 64, 64, 0.8);
-  
-}
 
 .saveLog {
   color: #fff;
@@ -350,14 +368,4 @@ input[type="checkbox" i] {
   padding: 5px;
   border-radius: 30px;
   margin: 5px;
-}
-
-#ad-wrapper { 
-  position: fixed;
-  bottom: 0;
-  color: #9C27B0;
-  text-align: center;
-  width: 100%;
-  font-size: 0.7em;
-  font-weight: 100;
 }
