@@ -1,0 +1,69 @@
+{
+  "profile": {
+    "Dean": "Dean H",
+    "email": "example@home.com",
+    "bgImg": "https://deanha.com/wp-content/uploads/2017/01/deanha_logo.png",
+    "todo_minimised": false
+  },
+  "history": [
+    {
+      "28/06/29": {
+        "startOfDay": "08:00am",
+        "lunchStart": "12:00pm",
+        "lunchEnd": "01:00pm",
+        "endOfDay": "05:00pm",
+        "lunchDuration": 58,
+        "dayDuration": 8
+      },
+      "27/06/29": {
+        "startOfDay": "08:00am",
+        "lunchStart": "12:00pm",
+        "lunchEnd": "01:00pm",
+        "endOfDay": "05:00pm",
+        "lunchDuration": 58,
+        "dayDuration": 8
+      }
+    }
+  ],
+  "settings": {
+    "theme": "light",
+    "proUser": true,
+    "extensions": [
+      "todo",
+      "weather",
+      "temperature"
+    ]
+  },
+  "todos": [
+    {
+      "done": false,
+      "uid": 1,
+      "label": "dfsdf"
+    },
+    {
+      "done": false,
+      "uid": 2,
+      "label": "sdf"
+    },
+    {
+      "done": false,
+      "uid": 3,
+      "label": "sdf"
+    },
+    {
+      "done": false,
+      "uid": 4,
+      "label": "sdf"
+    },
+    {
+      "done": false,
+      "uid": 5,
+      "label": "sdf"
+    },
+    {
+      "done": false,
+      "uid": 6,
+      "label": "sdf"
+    }
+  ]
+}
