@@ -1,9 +1,19 @@
 {
   "profile": {
-    "Dean": "Dean H",
     "email": "example@home.com",
-    "bgImg": "https://deanha.com/wp-content/uploads/2017/01/deanha_logo.png",
-    "todo_minimised": false
+    "name": "Dean H",
+    "avatar": "https://deanha.com/wp-content/uploads/2017/01/deanha_logo.png"
+  },
+  "settings": {
+    "theme": "light",
+    "proUser": true,
+    "extensions": [
+      "todo",
+      "weather",
+      "temperature"
+    ],
+    "todo_minimised": false,
+    "bacgroundWallpaper": "https://www.toptal.com/designers/subtlepatterns/patterns/papyrus.png"
   },
   "history": [
     {
@@ -25,45 +35,36 @@
       }
     }
   ],
-  "settings": {
-    "theme": "light",
-    "proUser": true,
-    "extensions": [
-      "todo",
-      "weather",
-      "temperature"
-    ]
-  },
   "todos": [
     {
       "done": false,
       "uid": 1,
-      "label": "dfsdf"
+      "label": "task 001"
     },
     {
       "done": false,
       "uid": 2,
-      "label": "sdf"
+      "label": "task 002"
     },
     {
       "done": false,
       "uid": 3,
-      "label": "sdf"
+      "label": "task 003"
     },
     {
       "done": false,
       "uid": 4,
-      "label": "sdf"
+      "label": "task 004"
     },
     {
       "done": false,
       "uid": 5,
-      "label": "sdf"
+      "label": "task 005"
     },
     {
-      "done": false,
+      "done": true,
       "uid": 6,
-      "label": "sdf"
+      "label": "last task on the list"
     }
   ]
 }

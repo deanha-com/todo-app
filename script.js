@@ -148,6 +148,48 @@ function saveDayLog() {
         '{finish :' + localStorage.finish +'} ');
 }
 
+// structure the json
+var structuredJSON = {
+  "profile": {
+    "name": "Dean H",
+    "email": "example@home.com",
+    "avatar": "https://deanha.com/wp-content/uploads/2017/01/deanha_logo.png"
+  },
+  "settings": {
+    "theme": "light",
+    "todo_minimised": false,
+    "bacgroundWallpaper": "https://www.toptal.com/designers/subtlepatterns/patterns/papyrus.png",
+    "proUser": false,
+    "extensions": [
+      "todo",
+      "weather",
+      "temperature"
+    ]
+  },
+  "history": [
+    {
+      "28/06/29": {
+        "startOfDay": "08:00am",
+        "lunchStart": "12:00pm",
+        "lunchEnd": "01:00pm",
+        "endOfDay": "05:00pm",
+        "lunchDuration": 58,
+        "dayDuration": 8
+      },
+      "27/06/29": {
+        "startOfDay": "08:00am",
+        "lunchStart": "12:00pm",
+        "lunchEnd": "01:00pm",
+        "endOfDay": "05:00pm",
+        "lunchDuration": 58,
+        "dayDuration": 8
+      }
+    }
+  ],
+  "todos": []
+}
+
+
 function formatDate(date) {
     var monthNames = [
         "January", "February", "March",
