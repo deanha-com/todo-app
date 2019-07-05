@@ -1,91 +1,87 @@
 
 <!DOCTYPE html>
 <html lang="en" class="noselect">
+    <head>
+        <meta charset="UTF-8">
+        <title>Todo - App</title>
+        <!-- <link rel="shortcut icon" type="image/png" href="./favicon.png"/> -->
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A front-end JavasSript 'Todo-App' which also allows you to record your daily working hours. Punch in and out.. more features coming soon.">
+        <meta name="author" content="Dean Ha">
+        <meta>
+    </head>
 
-<head>
+    <body class="bggrad-disabled">
 
-    <meta charset="UTF-8">
-    <title>Todo - App</title>
-    <!-- <link rel="shortcut icon" type="image/png" href="./favicon.png"/> -->
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A front-end javascript todo app which also allows you to record your daily working hours. punch in and out.. more features coming soon.">
-    <meta name="author" content="Dean Ha">
-    <meta>
+        <div>
+            <div class="buttons"> 
 
-</head>
+                <a id="startBtn" href="#" class="btn start">Ready to start</a>
+                <a href="#" class="btn onlunch">On Lunch</a>
+                <a href="#" class="btn hadlunch">I'm Back</a>
+                <a href="#" class="btn finish">Done for the day</a>
+                <a href="#" class="clearTime">X</a>
+                <a href="#" class="pos-bottom-right round saveLog">💾</a>
+                <a href="#" class="pos-bottom-left round settings-btn">⚙️</a>
 
-<body class="bggrad-disabled">
+            </div>
+        </div>
+        <!-- 
+        <div class="ads">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2297563118314665"
+                 data-ad-slot="7202181032"
+                 data-ad-format="auto">
+             </ins>
+        </div>
+         -->
+            
+        <div class="welcome" style="display: block;">
+            <h1><span id="greeting">Hey</span> <span id="user" contenteditable="true" spellcheck="false" onfocusout="saveLoadName()">there</span>.</h1>
+        </div>
 
-    <div>
-        <div class="buttons"> 
+        <div class="widget">
 
-            <a id="startBtn" href="#" class="btn start">Ready to start</a>
-            <a href="#" class="btn onlunch">On Lunch</a>
-            <a href="#" class="btn hadlunch">I'm Back</a>
-            <a href="#" class="btn finish">Done for the day</a>
-            <a href="#" class="clearTime">X</a>
-            <a href="#" class="pos-bottom-right round saveLog">💾</a>
-            <a href="#" class="pos-bottom-left round settings-btn">⚙️</a>
+            <div id="minimize" class="">📌</div>
+
+            <article id="todo_widget" class="todo">
+                <span class="maximise" onclick="maximise()"></span>
+                <h1 class="todo_title">Lets crush those tasks!💪</h1>
+                <!-- <form> -->
+                <label for="todoInput" class="todo_desc">What do you want to achieve today?</label>
+                <hr/>
+                <input class="todo_input" id="todoInput" type="text" name="todoInput" placeholder="Enter a task" onkeyup="todos.checkInput(event)">
+                <input class="todo_add-item" type="submit" value="Add" name="add">
+                <!-- </form> -->
+                <ul id="todo" class="todo_list"></ul>
+                <span class="todo_count">-</span>
+            </article>
 
         </div>
-    </div>
-    <!-- 
-    <div class="ads">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2297563118314665"
-             data-ad-slot="7202181032"
-             data-ad-format="auto">
-         </ins>
-    </div>
-     -->
         
-    <div class="welcome" style="display: block;">
-        <h1><span id="greeting">Hey</span> <span id="user" contenteditable="true" spellcheck="false" onfocusout="saveLoadName()">there</span>.</h1>
-    </div>
+         <script type="text/template" id="todo-item-template">
+             <li class="todo_item" draggable="true" data-qid="{{uid}}">
+                <div>
+                    <label>
+                        <input type="checkbox" {{done}}>
+                    <div class="todo_task">{{label}}</div>
 
-    <div class="widget">
-
-        <div id="minimize" class="">📌</div>
-
-        <article id="todo_widget" class="todo">
-            <span class="maximise" onclick="maximise()"></span>
-            <h1 class="todo_title">Lets crush those tasks!💪</h1>
-            <!-- <form> -->
-            <label for="todoInput" class="todo_desc">What do you want to achieve today?</label>
-            <hr/>
-            <input class="todo_input" id="todoInput" type="text" name="todoInput" placeholder="Enter a task" onkeyup="todos.checkInput(event)">
-            <input class="todo_add-item" type="submit" value="Add" name="add">
-            <!-- </form> -->
-            <ul id="todo" class="todo_list"></ul>
-            <span class="todo_count">-</span>
-        </article>
-
-    </div>
-    
-     <script type="text/template" id="todo-item-template">
-         <li class="todo_item" draggable="true" data-qid="{{uid}}">
-            <div>
-                <label>
-                    <input type="checkbox" {{done}}>
-                <div class="todo_task">{{label}}</div>
-
-                </label>
-                <button class="todo_item-delete">❌</button>
-            </div>
-        </li>
-    </script>
+                    </label>
+                    <button class="todo_item-delete">❌</button>
+                </div>
+            </li>
+        </script>
 
 
-    <script defer src="todo.js"></script>
-    <script defer src="script.js"></script>
+        <script defer src="todo.js"></script>
+        <script defer src="script.js"></script>
 
-    <!-- Developer Notes -->
-    <!-- ▶️⏸⏹⏺⏏️ -->
-
-</body>
+        <!-- Developer Notes -->
+        <!-- ▶️⏸⏹⏺⏏️ -->
+    </body>
 </html>

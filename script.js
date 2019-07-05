@@ -4,6 +4,7 @@
 
 
 //Listen to when a button is clicked. If its clicked run the getTime() on that particular button)
+//
 var btns = document.querySelectorAll('.btn');
 var localStorageKeys = ['start','onlunch','hadlunch','finish'];
 
@@ -13,7 +14,7 @@ Array.prototype.forEach.call(btns, function addClickListener(btn) {
 
 
 // load the localStorage data and parse it into the button text.
-//
+// 
 function loadLocalS() {
     localStorageKeys.forEach(function(e){
         if (localStorage.getItem(e) && localStorage.getItem(e).length > 1) {
@@ -141,12 +142,77 @@ window.onload = function() {
 
 
 function saveDayLog() {
-    localStorage.setItem(formatDate(new Date()),
-        '{start : '+localStorage.start+'} ' +
-        '{onlunch : ' + localStorage.onlunch+'} ' +
-        '{hadlunch : ' +localStorage.hadlunch+'} ' + 
-        '{finish :' + localStorage.finish +'} ');
+    var prepJSON = '{'+
+    '"profile": {'+
+    '"name": "Dean H",'+
+    '"email": "example@home.com",'+
+    '"avatar": "https://deanha.com/wp-content/uploads/2017/01/deanha_logo.png"'+
+    '},'+
+    '"settings": {'+
+    '"theme": "light",'+
+    '"todo_minimised": false,'+
+    '"bacgroundWallpaper": "https://www.toptal.com/designers/subtlepatterns/patterns/papyrus.png",'+
+    '"proUser": false,'+
+    '"extensions": ['+
+    '"todo",'+
+    '"weather",'+
+    '"temperature"'+
+    ']'+
+    '},'+
+    '"history": ['+
+    '{'+
+    '"2019/06/19": {'+
+    '"startOfDay": "' +localStorage.start+'",'+
+    '"lunchStart": "' +localStorage.onlunch+'",'+
+    '"lunchEnd": "' +localStorage.hadlunch+'",'+
+    '"endOfDay": "' +localStorage.finish+'",'+
+    '"lunchDuration": 58,'+
+    '"dayDuration": 8'+
+    '},'+
+    '"2019/07/04": {'+
+    '"startOfDay": "08:00am",'+
+    '"lunchStart": "12:00pm",'+
+    '"lunchEnd": "01:00pm",'+
+    '"endOfDay": "05:00pm",'+
+    '"lunchDuration": 58,'+
+    '"dayDuration": 8'+
+    '}'+
+    '}'+
+    '],'+
+    '"todos": []'+
+    '}'
+    localStorage.setItem( 'myTodoApp', prepJSON );
 }
+
+
+// read name from localstorage JSON
+/*
+let localdata = JSON.parse(localStorage.getItem('myTodoApp'));
+localdata.history[0]["2019/0006/19"];
+console.warn(localdata.profile.name);
+*/
+
+localStorage.setItem(formatDate(new Date()), 
+    '{'+
+    '"startOfDay": "' + localStorage.start + '",' +
+    '"lunchStart": "' + localStorage.onlunch + '",' +
+    '"lunchEnd": "' + localStorage.hadlunch + '",' +
+    '"endOfDay": "' + localStorage.finish + '",' +
+    '"lunchDuration": 58,' +
+    '"dayDuration": 8' +
+    '}'
+);
+
+
+var aaab;
+function updateProfile(name,email,avatar) {
+    aaab =  '"profile": {'+
+    '"name": "' +name+'",'+
+    '"email": "' +email+'",'+
+    '"avatar": "' +avatar+'"'+
+  '}'
+}
+
 
 // structure the json
 var structuredJSON = {
@@ -189,7 +255,6 @@ var structuredJSON = {
   "todos": []
 }
 
-
 function formatDate(date) {
     var monthNames = [
         "January", "February", "March",
@@ -199,7 +264,7 @@ function formatDate(date) {
     ];
 
     var day = date.getDate();
-    var monthIndex = date.getMonth();
+    var monthIndex = date.getMonth() + 1;
     var year = date.getFullYear();
 
     return year + "/" + monthIndex + "/" + day ;
@@ -259,6 +324,7 @@ function saveLoadName() {
     x.addEventListener("input", function() {
         var userText = document.getElementById("user").innerHTML;
         localStorage.setItem('userName',userText);
+
         console.log("input event fired");
     }, false);
 
@@ -308,9 +374,9 @@ window.mobilecheck = function() {
 };
 
 if (!window.mobilecheck()) {
-    document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg')";
+    document.body.style.backgroundImage = "url('https://aadcdn.msftauth.net/ests/2.1/content/images/backgrounds/0_a5dbd4393ff6a725c7e62b61df7e72f0.jpg')";
+    // document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg')";
     // document.body.style.backgroundImage = "url('http://cdn.wallpapername.com/1680x1050/20140408/video%20games%20robots%20eclipse%20aliens_www.wallpapername.com_79.jpg')";
-    
 }
 
 

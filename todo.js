@@ -1,16 +1,15 @@
 'use strict';
+/**
+ * The main function that handles each task - Create, Read, Update, And Delete (CRUD)
+ * 
+ */
 
-/* --------------------------------------------------------------------------------- */
-/* THE MAIN FUNCTION THAT HANDLES EACH TASK - CREATE, EDIT, UPDATE AND DELETE.
-/* LISTEN TO CHANGES.
-/* --------------------------------------------------------------------------------- */
 var Todo = function(uid, label, done, template, onDelete) {
     var label = label;
     var uid = uid;
     var done = done;
     var template = template;
     var onDelete = onDelete;
-
     var $element;
     var $label;
     var $deleteButton;
@@ -20,7 +19,6 @@ var Todo = function(uid, label, done, template, onDelete) {
 
     function render() {
         var $templateElement = document.createElement('template');
-
         $templateElement.innerHTML = template
             .trim()
             .replace('{{label}}', label)
@@ -35,11 +33,13 @@ var Todo = function(uid, label, done, template, onDelete) {
         return $element;
     }
 
+
     function addListeners() {
         $label.addEventListener('click', onLabelClicked);
         $deleteButton.addEventListener('click', onDeleteClicked);
         $addBtn.addEventListener('click', onSubmit);
     }
+
 
     function onLabelClicked(evt) {
         // console.log('Ive been clicked - LABEL')
@@ -52,19 +52,21 @@ var Todo = function(uid, label, done, template, onDelete) {
         todos.leftTodo();
     }
 
+
     function onSubmit(evt) {
         var taskValue = document.getElementById("todoInput").value;
-
         // todos.addTask(taskValue);
         console.log('submited new task')
             // console.log(this);
             // render();
     }
 
+
     function onDeleteClicked(evt) {
         console.log('Delete icon clicked, task item removed');
         onDelete(uid);
     }
+
 
     return {
         label: label,
@@ -82,10 +84,11 @@ var Todo = function(uid, label, done, template, onDelete) {
     }
 }
 
-/* --------------------------------------------------------------------------------- */
-/* BE AS BASIC AND DUMP AS POSSIBLE + DOES NOT CARE ABOUT STATE CHANGES
-/* HANDLES THE WHOLE LIST.
-/* --------------------------------------------------------------------------------- */
+
+/**
+ * Be as basic and dump as possible + does not care about state changes
+ * Handles the whole list.
+ */
 
 var TodoList = function($container) {
 
@@ -100,12 +103,10 @@ var TodoList = function($container) {
     // });
 
     var todoTemplate = document.getElementById('todo-item-template').innerHTML;
-
     var self = this;
 
     // Add a task and set the status
     function addTask(todoItem, done) {
-
 
         todos.forEach(function(todo) {
             if (todo.uid > uniqID)
@@ -176,6 +177,7 @@ var TodoList = function($container) {
     }
 
 
+
     // Mark all tasks as DONE
     function markAllDone() {
         for (var i = 1; i < todos.length + 1; i++) {
@@ -204,11 +206,13 @@ var TodoList = function($container) {
         return filteredList;
     }
 
+
     function leftTodo() {
         var leftTodo = filterTask().length;
         document.getElementsByClassName("todo_count")[0].innerHTML = leftTodo + ' task left to do';
         return leftTodo;
     }
+
 
     // Load data from local storage
     function loadData() {
@@ -228,12 +232,11 @@ var TodoList = function($container) {
             }
         }
         render();
-
         // return todos;
     }
 
 
-    // save current todo list to local storage
+    // Save current todo list to local storage
     function saveData() {
         // console.log(todos);
         var todosData = todos.map(function(todo) {
@@ -245,12 +248,14 @@ var TodoList = function($container) {
         return todoJson;
     }
 
+
     function resetInput() {
         document.getElementById("todoInput").value = "";
         console.log('resetting..');
         leftTodo();
         
     }
+
 
     function checkInput(thisEvent) {
         if (thisEvent.keyCode == 13) { // enter key

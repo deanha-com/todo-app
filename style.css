@@ -1,8 +1,9 @@
-/****
+/**
  * RULE 1: Selectors in order of specifity. Any selector should trump everything before it. Generic > Specific
  * RULE 2: Only one pixel value on the sheet, everything else should be em or rem.
  * RULE 3: Never more than 3 nested selected
- ****/
+ */
+
 
 /**
  * Container Styles
@@ -83,10 +84,10 @@ h1 {
   color: rgba(255, 255, 255, 0.8);
 }
 
+
 /**
  * Todo Task List Styling
  */
-
 #minimize:hover + #todo_widget, /*#todo_widget:hover*/ {
     opacity: 1;
 }
@@ -260,7 +261,6 @@ input[type="checkbox" i] {
   border-radius: 15px;
 }
 
-
 .maximise:before {
   content: " ➕ ";
   cursor: pointer;
@@ -278,11 +278,11 @@ input[type="checkbox" i] {
   /* font-size: 1.4em; */
 }
 
-
 .todo_title, .todo_desc {
   text-align: center;
   display: block;
 }
+
 
 /**
  * For Mobile Responsiveness
@@ -323,7 +323,6 @@ input[type="checkbox" i] {
   background:rgba(64, 64, 64, 0.8);
 }
 
-
 .pos-bottom-left {
   position: absolute;
   left: 0;
@@ -336,7 +335,6 @@ input[type="checkbox" i] {
   right: 0;
   bottom: 0;
   background:rgba(64, 64, 64, 0.8);
-  
 }
 
 .settings-btn {
@@ -350,7 +348,6 @@ input[type="checkbox" i] {
   bottom: 5px;
   left: 5px;
 }
-
 
 .saveLog {
   color: #fff;
