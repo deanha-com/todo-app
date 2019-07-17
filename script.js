@@ -192,16 +192,30 @@ localdata.history[0]["2019/0006/19"];
 console.warn(localdata.profile.name);
 */
 
-localStorage.setItem(formatDate(new Date()), 
-    '{'+
-    '"startOfDay": "' + localStorage.start + '",' +
-    '"lunchStart": "' + localStorage.onlunch + '",' +
-    '"lunchEnd": "' + localStorage.hadlunch + '",' +
-    '"endOfDay": "' + localStorage.finish + '",' +
-    '"lunchDuration": 58,' +
-    '"dayDuration": 8' +
-    '}'
-);
+function isset(a) {
+
+    if (a == null || a == undefined) {
+        return null;
+    } else {
+        return  '"'+a+'"';
+    }
+}
+
+function setHistory(currentDate) {
+    
+    localStorage.setItem(formatDate(currentDate), 
+        '{'+
+        '"startOfDay": ' + isset(localStorage.start) + ',' +
+        '"lunchStart": ' + isset(localStorage.onlunch) + ',' +
+        '"lunchEnd": ' + isset(localStorage.hadlunch) + ',' +
+        '"endOfDay": ' + isset(localStorage.finish) + ',' +
+        '"lunchDuration": ' + isset(localStorage.finish) + ',' +
+        '"dayDuration": ' + isset(localStorage.finish) + 
+        '}'
+    );
+}
+
+setHistory(new Date());
 
 
 var aaab;
