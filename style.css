@@ -221,7 +221,7 @@ input[type="checkbox" i] {
   top: 5px;
   right: 5px;
   z-index: 10;
-  background: rgb(72, 72, 72);
+  /* background: rgb(72, 72, 72); */
   padding: 5px 5px;
   color: #fff;
   text-align: center;
@@ -231,8 +231,9 @@ input[type="checkbox" i] {
 }
 
 #minimize:hover {
-  font-size: 1.8em;
-  border-radius: 30px;
+  /* font-size: 1.8em; */
+  /* border-radius: 30px; */
+  /* background:rgba(255, 255, 255, 0.5); */
 }
 
 #user:focus {
@@ -320,33 +321,34 @@ input[type="checkbox" i] {
   position: absolute;
   right: 0;
   top: 0;
-  background:rgba(64, 64, 64, 0.8);
 }
 
 .pos-bottom-left {
   position: absolute;
   left: 0;
   bottom: 0;
-  background:rgba(64, 64, 64, 0.8);
 }
 
 .pos-bottom-right {
   position: absolute;
   right: 0;
   bottom: 0;
-  background:rgba(64, 64, 64, 0.8);
 }
 
 .settings-btn {
   color: #fff;      
   text-decoration: none;
-  font-size: 1.5em;
 }
 
-.settings-btn:hover {
-  font-size: 2em;
-  bottom: 5px;
-  left: 5px;
+
+
+.settings-btn:hover,
+#minimize:hover,
+.saveLog:hover {
+  background:rgba(255, 255, 255, 0.5);
+  /* font-size: 2em; */
+  /* bottom: 5px;
+  left: 5px; */
 }
 
 .saveLog {
@@ -355,14 +357,13 @@ input[type="checkbox" i] {
   font-size: 1.5em;
 }
 
-.saveLog:hover {
-  font-size: 2em;
-  bottom: 5px;
-  right: 5px;
-}
-
 .round {
   padding: 5px;
   border-radius: 30px;
   margin: 5px;
+}
+
+#minimize, .saveLog, .settings-btn {
+  width: 30px;
+  height: 30px;
 }
