@@ -259,7 +259,7 @@ input[type="checkbox" i] {
   position: relative;
   width: 50%;
   margin: 30px auto;
-  border-radius: 15px;
+  border-radius: 6px;
 }
 
 .maximise:before {
@@ -345,7 +345,7 @@ input[type="checkbox" i] {
 .settings-btn:hover,
 #minimize:hover,
 .saveLog:hover {
-  background:rgba(255, 255, 255, 0.5);
+  background:rgba(255, 255, 255, 0.15);
   /* font-size: 2em; */
   /* bottom: 5px;
   left: 5px; */

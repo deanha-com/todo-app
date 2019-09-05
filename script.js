@@ -389,9 +389,10 @@ window.mobilecheck = function() {
 
 if (!window.mobilecheck()) {
     document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1485211177140-aa3b17a0c7b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1401&q=80')";
-    // document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/milky_way_august_sky_fir-trees_trees_night_45544_2560x1600.jpg')";
+    
     // document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80')";
     // document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1540067366401-392208899e38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')";
+    // document.body.style.backgroundImage = "url('    https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')";
 }
 
 
@@ -404,19 +405,19 @@ function greetingMsg() {
 
     if ( timeNow < 12) {
 
-        greetMsg.innerHTML = "Good morning";
+        greetMsg.innerHTML = "Good morning,";
 
     }
 
     if ( ( timeNow > 12 ) && ( timeNow < 18 ) ) {
 
-        greetMsg.innerHTML = "Good afternoon";
+        greetMsg.innerHTML = "Good afternoon,";
 
     }
 
     if (timeNow > 18) {
 
-        greetMsg.innerHTML = "Good evening";
+        greetMsg.innerHTML = "Good evening,";
 
     }
 
