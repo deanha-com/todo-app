@@ -79,8 +79,10 @@ h1 {
   font-size: large;
   text-align: center;
   top: 35%;
-  position: relative;
+  position: fixed;
   margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -94,6 +96,7 @@ h1 {
 
 
 .todo {
+  display: none;
   position: absolute;
   right: 5px;
   top: 5px;
@@ -106,7 +109,7 @@ h1 {
   width: 40em;
   max-width: 100%;
   border-radius: 15px;
-  max-height: 70vh;
+  max-height: 90vh;
   overflow-y: scroll;
 }
 
@@ -188,8 +191,9 @@ input[type="checkbox" i] {
 }
 
 .buttons {
-  padding:  5px;
-  margin-top: 3px;
+  margin-top: 5px;
+  padding: 5px;
+  display: inline-grid;
 }
 
 .btn, .clearTime{
@@ -204,8 +208,22 @@ input[type="checkbox" i] {
   margin: 3px auto;
 }
 
+
+.buttons span::after { 
+  content: " ";
+    height: 25px;
+    width: 1px;
+    background-color: rgba(192, 192, 192, 0.3);
+    display: block;
+    left: 50%;
+    position: relative;
+}
+
 .clearTime {
-  position: relative;
+  position: absolute;
+  margin: 3px auto;
+  right: 35px !important;
+  bottom: 5px !important;
 }
 
 .active {
@@ -258,10 +276,13 @@ input[type="checkbox" i] {
 }
 
 #todo_widget.expand {
-  position: relative;
-  width: 70%;
-  margin: 0px auto;
-  border-radius: 6px;
+  position: fixed;
+    width: 70%;
+    margin: 0px auto;
+    border-radius: 6px;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .maximise:before {
@@ -276,9 +297,9 @@ input[type="checkbox" i] {
 
 .maximise { 
   position: absolute;
-  right: 35px;
-  top: 4px;
-  /* font-size: 1.4em; */
+    left: 10px;
+    top: 5px;
+    font-size: 1.8em;
 }
 
 .todo_title, .todo_desc {
@@ -296,10 +317,11 @@ input[type="checkbox" i] {
   }
 
   .todo {
-    padding: 1.5em;
-    margin-top: 45px;
-    max-height: 85vh;
+    /*padding: 1.5em;*/
+    max-height: 90vh;
     overflow: auto;
+    margin: 0;
+    left: 0px;
   }
 
   .btn, .clearTime {
@@ -309,13 +331,21 @@ input[type="checkbox" i] {
   #todo_widget.expand {
     position: absolute;
     width: 100%;
-    margin-top: 45px;
+    top: 0;
     background: rgba(40, 40, 40, 1);
+    height: 100vh;
+    max-height: 100vh;
   }
 
   .buttons {
-    display: flex;
-    margin-right: 40px;
+    display: block;
+  }
+
+  .buttons span::after { 
+    content: " ";
+      height: 0px;
+      left: 50%;
+      position: relative;
   }
 }
 

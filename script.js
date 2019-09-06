@@ -324,10 +324,10 @@ function todoToggle() {
         minimizeBtn.className = "";
     }
 
-    if(minimizeBtn.innerHTML =="📌") {
-        minimizeBtn.innerHTML = "📌";
+    if(minimizeBtn.innerHTML =='<img src="check-list.svg" alt="">') {
+        minimizeBtn.innerHTML = '<img src="check-list.svg" alt="">';
     } else {
-        minimizeBtn.innerHTML ="📌";
+        minimizeBtn.innerHTML ='<img src="check-list.svg" alt="">';
     }
 }
 
@@ -350,7 +350,17 @@ function saveLoadName() {
 }
 
 var startShiftTime = 8;
-var finishShiftTime = 17;
+var finishShiftTime = 19;
+
+/*
+function setGreetName() {
+  var person = prompt("Hi, what's your name", "Harry Potter");
+  if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today?";
+  }
+}
+*/
 
 function letsBegin() {
     if(new Date().getHours() > (startShiftTime -1) ) {
@@ -362,9 +372,12 @@ function letsBegin() {
             if (localStorage.userName !== undefined) {
                 var user = localStorage.userName;
                 document.getElementById("user").innerHTML = user;
+            } else {
+                user = 'there';
+                document.getElementById("user").innerHTML = user;
             }
 
-            if (confirm('Hey '+ user +', \nare you ready to START?')) {
+            if (confirm('Hey '+user +', \nAre you ready to start the day?')) {
                 // Save it!
                 document.getElementById("startBtn").click();
                 console.log("true saved");
